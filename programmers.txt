@@ -1,0 +1,32 @@
+01_updi4avr.name=TPI4AVR over UART (Standard)
+01_updi4avr.communication=serial
+01_updi4avr.protocol=tpi4avr
+01_updi4avr.program.tool=avrdude
+01_updi4avr.program.extra_params=-C {runtime.platform.path}/avrdude.conf.TPI4AVR -P {serial.port} -b 1500000
+
+02_updi4avr_HV.name=TPI4AVR over UART (HV Recomended)
+02_updi4avr_HV.communication=serial
+02_updi4avr_HV.protocol=tpi4avr
+02_updi4avr_HV.program.tool=avrdude
+02_updi4avr_HV.program.extra_params=-C {runtime.platform.path}/avrdude.conf.TPI4AVR -P {serial.port} -b 1500000 -F
+
+21_pickit4_updi.name=PICkit4 over USB (UPDI)
+21_pickit4_updi.communication=usb
+21_pickit4_updi.protocol=pickit4_updi
+21_pickit4_updi.program.protocol=jtagice3_updi
+21_pickit4_updi.program.tool=avrdude
+21_pickit4_updi.program.extra_params=-P usb "-C{runtime.platform.path}/avrdude.conf.reduceAVR"
+
+31_usbasp.name=USBasp
+31_usbasp.communication=usb
+31_usbasp.protocol=usbasp
+31_usbasp.program.protocol=usbasp
+31_usbasp.program.tool=avrdude
+31_usbasp.program.extra_params=-P usb "-C{runtime.platform.path}/avrdude.conf.reduceAVR"
+
+32_avrispmkii.name=AVRISP mkII
+32_avrispmkii.communication=usb
+32_avrispmkii.protocol=stk500v2
+32_avrispmkii.program.protocol=stk500v2
+32_avrispmkii.program.tool=avrdude
+32_avrispmkii.program.extra_params=-P usb "-C{runtime.platform.path}/avrdude.conf.reduceAVR"
