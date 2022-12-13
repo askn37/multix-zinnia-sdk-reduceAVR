@@ -1,0 +1,3 @@
+[submodule "cores/reduceAVR"]
+	path = cores/reduceAVR
+	url = https://github.com/askn37/MacroMicroAPI_core.git
