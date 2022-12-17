@@ -52,7 +52,7 @@ avrdude を用いて対象MCUにアップロードするまでの作業フロー
 工場出荷状態ではブートローダーが書き込まれていないため
 何らかの書込器準備は必要。
 
-- __TPI4AVR__ -- このソフトウェア開発キット（reduceAVR以外）でもメンテナンスされている。
+- [__TPI4AVR__](https://github.com/askn37/TPI4AVR) -- このSDK（reduceAVR以外の）でもメンテナンスされている。
   - __HV書込__ に対応。（要外部回路）
 - PICkit4 -- 公式のプログラム書込装置兼 ~~デバッグトレース~~ 装置。
   - 使用開始前に MPLAB X によるFWアップデートが要求される。購入状態での対応範囲不明。
@@ -62,17 +62,23 @@ avrdude を用いて対象MCUにアップロードするまでの作業フロー
 
 ## 導入方法
 
-- 「環境設定」「追加のボードマネージャーのURL」に以下のリンクを追加
+- Arduino IDE の「環境設定」「追加のボードマネージャーのURL」に以下のリンクを追加
   - [`https://askn37.github.io/package_multix_zinnia_index.json`](https://askn37.github.io/package_multix_zinnia_index.json)
 - 「ボードマネージャー」ダイアログパネルを開き、検索欄に "multix" と入力
-  - 表示候補から希望の SDK 種別（reduceAVR）を選択して「インストール」
-- 「ボードマネージャー」メニュー候補から上記を選択、選択肢からビルド対象を選ぶ
+- 目的のアーキテクチャを選択して「インストール」\
+  `reduceAVR`
+
+### Developer Preview
+
+- 上記リンクは更新がある程度まとまってから差し替えられるため、公開リポジトリより古い場合がある。
+なる早で Arduino IDE に更新を取り込みたい場合は、下記リンクを使用されたい。
+  - [`https://askn37.github.io/package_multix_zinnia_index_preview.json`](https://askn37.github.io/package_multix_zinnia_index_preview.json)
 
 ## ボード選択メニュー
 
 SDK種別と対象ブートローダー使用の有無をここで選ぶ。
 
-- __Multix Zinnia Product SDK [reduceAVR]__ <--
+- __Multix Zinnia Product SDK [reduceAVR]__
   - ATtiny4/5/9/10
 
 ## ボード選択サブメニュー
