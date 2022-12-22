@@ -29,7 +29,7 @@ namespace {
  * STCS|CTRLB       ($C3)
  * UPDIDIS          ($04)
  */
-  const uint8_t bitmap[2][12] = {{	/* 12 * 8 == 8 * 12 == 96 bit, LSB first */
+  const uint8_t bitmap[2][12] = {{  /* 12 * 8 == 8 * 12 == 96 bit, LSB first */
   /* RESET Enable */
   /* |BREAK          |BREAK              |IDLE           |$55              */
     0b00000000, 0b00000000, 0b00000000, 0b11111111, 0b11110101, 0b01010011,
