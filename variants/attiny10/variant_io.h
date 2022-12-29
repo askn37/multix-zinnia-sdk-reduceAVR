@@ -413,15 +413,15 @@ typedef struct WDT_struct
 /* Period select */
 typedef enum WDT_PERIOD_enum
 {
-    WDT_PERIOD_2CLK_gc          = (0x00<<0),    /* 2 cycles */
-    WDT_PERIOD_4CLK_gc          = (0x01<<0),    /* 4 cycles */
-    WDT_PERIOD_8CLK_gc          = (0x02<<0),    /* 8 cycles */
-    WDT_PERIOD_16CLK_gc         = (0x03<<0),    /* 16 cycles */
-    WDT_PERIOD_32CLK_gc         = (0x04<<0),    /* 32 cycles */
-    WDT_PERIOD_64CLK_gc         = (0x05<<0),    /* 64 cycles */
-    WDT_PERIOD_128CLK_gc        = (0x06<<0),    /* 128 cycles (0.5s) */
-    WDT_PERIOD_256CLK_gc        = (0x07<<0),    /* 256 cycles (1.0s) */
-    WDT_PERIOD_512CLK_gc        = (0x20<<0),    /* 512 cycles (2.0s) */
+    WDT_PERIOD_2CLK_gc          = (0x00<<0),    /* 2 cycles (64Hz) */
+    WDT_PERIOD_4CLK_gc          = (0x01<<0),    /* 4 cycles (32Hz) */
+    WDT_PERIOD_8CLK_gc          = (0x02<<0),    /* 8 cycles (16Hz) */
+    WDT_PERIOD_16CLK_gc         = (0x03<<0),    /* 16 cycles (8Hz) */
+    WDT_PERIOD_32CLK_gc         = (0x04<<0),    /* 32 cycles (4Hz) */
+    WDT_PERIOD_64CLK_gc         = (0x05<<0),    /* 64 cycles (2Hz) */
+    WDT_PERIOD_128CLK_gc        = (0x06<<0),    /* 128 cycles (1.0s) */
+    WDT_PERIOD_256CLK_gc        = (0x07<<0),    /* 256 cycles (2.0s) */
+    WDT_PERIOD_512CLK_gc        = (0x20<<0),    /* 512 cycles (4.0s) */
     WDT_PERIOD_1KCLK_gc         = (0x21<<0)     /* 1K cycles (8.0s) */
 } WDT_PERIOD_t;
 
@@ -701,12 +701,16 @@ IO Module Instances. Mapped to memory.
 
 
 /* TIM0 - Timer/Counter 0 Control */
+#define TIM0_CAPT                   _SFR_IO16(0x22) /* ICR0 */
 #define TIM0_CAPTL                  _SFR_IO8(0x22)  /* ICR0L */
 #define TIM0_CAPTH                  _SFR_IO8(0x23)  /* ICR0H */
+#define TIM0_CMPB                   _SFR_IO16(0x24) /* OCR0B */
 #define TIM0_CMPBL                  _SFR_IO8(0x24)  /* OCR0BL */
 #define TIM0_CMPBH                  _SFR_IO8(0x25)  /* OCR0BH */
+#define TIM0_CMPA                   _SFR_IO16(0x26) /* OCR0A */
 #define TIM0_CMPAL                  _SFR_IO8(0x26)  /* OCR0AL */
 #define TIM0_CMPAH                  _SFR_IO8(0x27)  /* OCR0BH */
+#define TIM0_CNT                    _SFR_IO16(0x28) /* TCNT0 */
 #define TIM0_CNTL                   _SFR_IO8(0x28)  /* TCNT0L */
 #define TIM0_CNTH                   _SFR_IO8(0x29)  /* TCNT0H */
 #define TIM0_INTFLAGS               _SFR_IO8(0x2A)  /* TIFR0 */

@@ -1,5 +1,5 @@
 /**
- * @file Blink_01_Basic.ino
+ * @file Blink_03_WDT.ino
  * @author askn (K.Sato) multix.jp
  * @brief Blink using delay timer sketch code
  * @version 0.1
@@ -13,11 +13,19 @@
 
 void setup (void) {
   pinModeMacro(LED_BUILTIN, OUTPUT);
+
+  _PROTECTED_WRITE(WDT_CTRLA, WDT_IE_bm | WDT_PERIOD_128CLK_gc);
+
+  set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+  sleep_enable();
+}
+
+ISR(WDT_vect) {
+  digitalWriteMacro(LED_BUILTIN, TOGGLE);
 }
 
 void loop (void) {
-  digitalWriteMacro(LED_BUILTIN, TOGGLE);
-  delay_millis(1000);
+  sleep_cpu();
 }
 
 // end of code
