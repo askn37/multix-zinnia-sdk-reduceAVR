@@ -57,7 +57,11 @@ ATtiny10 のような機能制約の多い MCUでも簡単かつ問題なく使�
 
 ## 著作表示
 
-Copyright (c) 2020 Kazuhiko Sato (askn) \
+Twitter: [@askn37](https://twitter.com/askn37) \
+GitHub: [https://github.com/askn37/](https://github.com/askn37/) \
+Product: [https://askn37.github.io/](https://askn37.github.io/)
+
+Copyright (c) askn (K.Sato) multix.jp \
 Released under the MIT license \
 [https://opensource.org/licenses/mit-license.php](https://opensource.org/licenses/mit-license.php) \
 [https://www.oshwa.org/](https://www.oshwa.org/)
