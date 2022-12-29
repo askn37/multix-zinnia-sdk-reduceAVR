@@ -107,6 +107,9 @@ Arduino IDE でこのSDKを選択すると、
     - Arduino互換APIの導入は要外部支援（本SDKサポート外）
   - Standard Library All Disable
     - フルアセンブラ記述/純粋C言語環境（LIBC無効）
+- __LED_BUILTIN Select__ -- 既定LED選択
+  - PIN_PB1 -- TPI4AVRの TCLK 信号端子インジケータ（既定）
+  - PIN_PB2 -- TPI書込時の未使用端子
 - __シリアルポート選択__
   - 環境依存
 - __書込装置選択__
@@ -120,6 +123,12 @@ Arduino IDE でこのSDKを選択すると、
 > Build API -> Standard Library All Disable 選択は、一切の既定コンパイル前提を除去する。
 
 ## プログラム書込
+
+### LED_BUILTIN
+
+既定値では`PIN_PB1`となっている。
+これはこの端子が`TPI`書込時の`TCLK`信号であり、書込器のインジケータLEDがユーザー制御で利用できることを期待している。
+そうでない書込器の場合は、ボードメニューの`LED_BUILTIN Select`を操作することで`PIN_PB2`に変更できる。
 
 ### 書込器でのスケッチ書込 ```Ctrl+U``` ```⌘+U```
 
