@@ -40,6 +40,34 @@ avrdude を用いて対象MCUにアップロードするまでの作業フロー
 > この分割は NVM書換プロトコルおよび/すなわちブートローダーの相互共有性による。\
 > 共通基盤の AVR-GCC/AVR-LIBC toolchain は既知の AVR 8bit 系全種に対応している。
 
+## AVRrc 一覧
+
+- __reduceAVR__ が対応するのは ATtiny4/5/9/10 のみ
+
+|Code|ATtiny4|ATtiny5|ATtiny9|ATtiny10|ATtiny20|ATtiny40|ATtiny102|ATtiny104|
+|-|-|-|-|-|-|-|-|-|
+|Pkg|SOT23-6|SOT23-6|SOT23-6|SOT23-6|SOIC14|SOIC20|SOIC8|SOIC14
+||UDFN8|UDFN8|UDFN8|UDFN8|TSSOP14|TSSOP20|UDFN8
+||||||VQFN20|VQFN20
+|Flash|512B|512B|1024B|1024B|1024B|2048B|1024B|1024B
+|SRAM|32B|32B|32B|32B|128B|256B|32B|32B
+|CLK|8M(12M)|8M(12M)|8M(12M)|8M(12M)|8M(12M)|8M(12M)|8M(12M)|8M(12M)
+|PCINT|3(4)|3(4)|3(4)|3(4)|11(12)|17(18)|5(6)|11(12)
+|INT|1|1|1|1|1|1|1|1
+|TIM/TC|1|1|1|1|2|2|1|1
+|PWM|2|2|2|2|2|2|2|2
+|ADC|-|3(4)|-|3(4)|8|8|5|8
+|AC|1+1|1+1|1+1|1+1|1+1|1+1|1+1|1+1
+|WDT|1|1|1|1|1|1|1|1
+|USART|-|-|-|-|-|-|1|1
+|SPI|-|-|-|-|1|1|1|1
+|TWI|-|-|-|-|1|1|1|1
+|ICSP|TPI|TPI|TPI|TPI|TPI|TPI|TPI|TPI
+
+- `TPI`書込 Vcc=4.5V〜5.5V
+- `CLKI`入力定格最大`12MHz`（Vcc=4.5V）
+- 内蔵発振器定格`8MHz`（Vcc=4.5V）または`4MHz`（Vcc=1.8V）
+
 ## 対応するホストOS
 
 - Windows (32bit/64bit)
@@ -48,11 +76,7 @@ avrdude を用いて対象MCUにアップロードするまでの作業フロー
 
 ## 対応する主なプログラムライタ
 
-完成品として販売されている製品以外の、
-工場出荷状態ではブートローダーが書き込まれていないため
-何らかの書込器準備は必要。
-
-- [__TPI4AVR__](https://github.com/askn37/TPI4AVR) -- このSDK（reduceAVR以外の）でもメンテナンスされている。
+- [__TPI4AVR__](https://github.com/askn37/TPI4AVR) -- このSDKでの既定書込装置。
   - __HV書込__ に対応。（要外部回路）
 - PICkit4 -- 公式のプログラム書込装置兼 ~~デバッグトレース~~ 装置。
   - 使用開始前に MPLAB X によるFWアップデートが要求される。購入状態での対応範囲不明。
@@ -109,7 +133,7 @@ Arduino IDE でこのSDKを選択すると、
     - フルアセンブラ記述/純粋C言語環境（LIBC無効）
 - __LED_BUILTIN Select__ -- 既定LED選択
   - PIN_PB1 -- TPI4AVRの TCLK 信号端子インジケータ（既定）
-  - PIN_PB2 -- TPI書込時の未使用端子
+  - PIN_PB2 -- TPI書込時の未使用端子（兼INT0割込端子）
 - __シリアルポート選択__
   - 環境依存
 - __書込装置選択__
@@ -119,15 +143,16 @@ Arduino IDE でこのSDKを選択すると、
   - USBasp
   - AVRISP mkII
 
-> FUSE UPDI -> UPDI (default) 選択以外に書換えた場合の復元は __HV対応書込器が必須。__\
-> Build API -> Standard Library All Disable 選択は、一切の既定コンパイル前提を除去する。
+> `FUSE PB3` -> `PB3 pin=Reset`選択以外に書換えた場合の復元は __HV対応書込器が必須。__\
+> `Build API{} -> `Standard Library All Disable`選択は、一切の既定コンパイル前提を除去する。
+__AVRrc では単純な加減算以外はC/C++言語で計算不能になることに注意。__
 
 ## プログラム書込
 
 ### LED_BUILTIN
 
 既定値では`PIN_PB1`となっている。
-これはこの端子が`TPI`書込時の`TCLK`信号であり、書込器のインジケータLEDがユーザー制御で利用できることを期待している。
+これはこの端子が`TPI`書込時の`TCLK`信号であり、書込器のインジケータLEDをユーザー制御で利用可能なことを期待している。
 そうでない書込器の場合は、ボードメニューの`LED_BUILTIN Select`を操作することで`PIN_PB2`に変更できる。
 
 ### 書込器でのスケッチ書込 ```Ctrl+U``` ```⌘+U```
@@ -157,8 +182,6 @@ EEPROM 初期化用 HEX ファイル
 ### ブートローダー
 
 reduceAVR系統は ブートローダーが支援されない。
-
-> 一部型番は自己書換対応だが大元の記憶容量が少ないため非効率。
 
 ## 許諾
 
