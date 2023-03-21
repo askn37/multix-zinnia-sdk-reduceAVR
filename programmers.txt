@@ -2,13 +2,13 @@
 01_updi4avr.communication=serial
 01_updi4avr.protocol=tpi4avr
 01_updi4avr.program.tool=avrdude
-01_updi4avr.program.extra_params=-C {runtime.platform.path}/avrdude.conf.TPI4AVR -P {serial.port} -b 1500000
+01_updi4avr.program.extra_params=-C {runtime.platform.path}/avrdude.conf.TPI4AVR -P {serial.port} -b 1000000
 
 02_updi4avr_HV.name=TPI4AVR over UART (HV Recomended)
 02_updi4avr_HV.communication=serial
 02_updi4avr_HV.protocol=tpi4avr
 02_updi4avr_HV.program.tool=avrdude
-02_updi4avr_HV.program.extra_params=-C {runtime.platform.path}/avrdude.conf.TPI4AVR -P {serial.port} -b 1500000 -F
+02_updi4avr_HV.program.extra_params=-C {runtime.platform.path}/avrdude.conf.TPI4AVR -P {serial.port} -b 1000000 -F
 
 21_pickit4_updi.name=PICkit4 over USB (UPDI)
 21_pickit4_updi.communication=usb
