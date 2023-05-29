@@ -7,7 +7,7 @@ programmer
   desc  = "STK500v2 to TPI bridge";
   type  = "jtagmkii_pdi";
   connection_type = serial;
-  baudrate = 115200;
+  baudrate = 230400;
 ;
 
 #------------------------------------------------------------
