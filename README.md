@@ -32,7 +32,7 @@ avrdude を用いて対象MCUにアップロードするまでの作業フロー
 - __MultiX Zinnia Product SDK [megaAVR]__
   - megaAVR-0 と tinyAVR-0/1/2 系統。（Atmelブランド世代）
 - __MultiX Zinnia Product SDK [modernAVR]__
-  - AVR DA/DB/DD/EA 系統。（Microchipブランド世代）
+  - AVR_DA/DB/DD/EA 系統。（Microchipブランド世代）
 - __MultiX Zinnia Product SDK [reduceAVR]__
   - 旧世代AVRのうち TPI方式に対応した系統。（Atmelブランド世代）
   - ATtiny4/5/9/10
@@ -184,6 +184,10 @@ EEPROM 初期化用 HEX ファイル
 reduceAVR系統は ブートローダーが支援されない。
 
 ## 更新履歴
+
+- v0.2.6 (23/10/16)
+  - `7.2-arduino.1`に更新。
+  - `7.3.0-avr8-gnu-toolchain-231004`に更新。
 
 - v0.2.4 (23/09/09)
   - `7.3.0-avr8-gnu-toolchain-230831`に更新。
