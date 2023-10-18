@@ -1,55 +1,92 @@
 #
+# AVRDUDE Configuration File
+#
+
+#
 # PROGRAMMER DEFINITIONS
 #
 
+#------------------------------------------------------------
+# dryrun
+#------------------------------------------------------------
+
+# Using -c dryrun is a good way to get acquainted with AVRDUDE and its
+# command line -U memory operations, -T terminal commands or the
+# interactive terminal -t. No hardware needs to be connected, as the
+# dryrun programmer emulates what can be expected to happen with a real
+# -c programmer and a corresponding connected physical programmer or a
+# directly connected board when it has a bootloader.
+#
+# Examples:
+# avrdude -c dryrun -p ATmega328P -t # Interactive terminal: enter help
+# avrdude -c dryrun -p ATmega2560 -U flash:w:myapplication.hex:i
+# avrdude -c dryrun -p AVR64DB48 -Tconfig
+
 programmer
-  id    = "tpi4avr";
-  desc  = "STK500v2 to TPI bridge";
-  type  = "jtagmkii_pdi";
-  connection_type = serial;
-  baudrate = 230400;
+    id                     = "dryrun";
+    desc                   = "Emulates programming without a programmer";
+    type                   = "dryrun";
+    prog_modes             = PM_TPI | PM_ISP | PM_UPDI | PM_PDI;
 ;
+
+#------------------------------------------------------------
+# tpi4avr
+#------------------------------------------------------------
+
+# TPI4AVR
+# https://askn37.github.io/product/TPI4AVR/
+
+programmer
+    id                     = "tpi4avr";
+    desc                   = "JTAGv2 to UPDI bridge";
+    type                   = "jtagmkii_pdi";
+    connection_type        = serial;
+    baudrate               = 230400;
+    prog_modes             = PM_UPDI;
+;
+
+#
+# PART DEFINITIONS
+#
 
 #------------------------------------------------------------
 # Common values for reduced core tinys (4/5/9/10/20/40)
 #------------------------------------------------------------
 
 part
-    id    = ".reduced_core_tiny_tpi";
-    desc  = "Common values for reduced core tinys";
+    desc                   = "Common values for reduced core tinys";
+    id                     = ".reduced_core_tiny_tpi";
 
-    ### TPI4AVR is over JTAGmkII serial mode! has_tpi not yes! ###
-    # has_tpi = yes;
-    has_updi = yes;
+    # for TPI4AVR only, not PM_TPI, using PM_UPDI
+    prog_modes             = PM_UPDI;
 
-    memory "boot"
-        size = 0;
+    memory "fuse"
+        size               = 1;
+        page_size          = 1;
+        initval            = 0xff;
+        bitmask            = 0x07;
+        offset             = 0x3f40;
+        blocksize          = 1;
+    ;
+
+    memory "lockbits"
+        size               = 1;
+        page_size          = 1;
+        initval            = 0xff;
+        bitmask            = 0x03;
+        offset             = 0x3f00;
     ;
 
     memory "signature"
-        size      = 3;
-        offset    = 0x3fc0;
-        page_size = 16;
+        size               = 3;
+        page_size          = 16;
+        offset             = 0x3fc0;
     ;
 
     memory "calibration"
-        size      = 1;
-        offset    = 0x3f80;
-        page_size = 8;
-    ;
-
-    memory "fuse"
-        size      = 1;
-        offset    = 0x3f40;
-        page_size = 1;
-        blocksize = 1;
-    ;
-
-    memory "lock"
-        size      = 1;
-        offset    = 0x3f00;
-        blocksize = 1;
-        page_size = 1;
+        size               = 1;
+        page_size          = 8;
+        offset             = 0x3f80;
     ;
 ;
 
@@ -58,16 +95,22 @@ part
 #------------------------------------------------------------
 
 part parent ".reduced_core_tiny_tpi"
-    id    = "t4";
-    desc  = "ATtiny4";
-    signature = 0x1e 0x8f 0x0a;
+    desc                   = "ATtiny4";
+    id                     = "t4";
+    variants               =
+        "ATtiny4-MAHR: UDFN8,   Fmax=12 MHz, T=[-40 C,  85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny4-TS8R: SOT23-6, Fmax=10 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny4-TSHR: SOT23-6, Fmax=12 MHz, T=[-40 C,  85 C], Vcc=[1.8 V, 5.5 V]";
+    mcuid                  = 0;
+    n_interrupts           = 10;
+    signature              = 0x1e 0x8f 0x0a;
 
     memory "flash"
-        size      = 512;
-        offset    = 0x4000;
-        page_size = 16;
-        blocksize = 32;
-        readsize  = 16;
+        size               = 512;
+        page_size          = 16;
+        offset             = 0x4000;
+        blocksize          = 128;
+        readsize           = 16;
     ;
 ;
 
@@ -76,9 +119,15 @@ part parent ".reduced_core_tiny_tpi"
 #------------------------------------------------------------
 
 part parent "t4"
-    id    = "t5";
-    desc  = "ATtiny5";
-    signature = 0x1e 0x8f 0x09;
+    desc                   = "ATtiny5";
+    id                     = "t5";
+    variants               =
+        "ATtiny5-MAHR: USON8,   Fmax=12 MHz, T=[-40 C,  85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny5-TS8R: SOT23-6, Fmax=10 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny5-TSHR: SOT23-6, Fmax=12 MHz, T=[-40 C,  85 C], Vcc=[1.8 V, 5.5 V]";
+    mcuid                  = 1;
+    n_interrupts           = 11;
+    signature              = 0x1e 0x8f 0x09;
 ;
 
 #------------------------------------------------------------
@@ -86,16 +135,22 @@ part parent "t4"
 #------------------------------------------------------------
 
 part parent ".reduced_core_tiny_tpi"
-    id    = "t9";
-    desc  = "ATtiny9";
-    signature = 0x1e 0x90 0x08;
+    desc                   = "ATtiny9";
+    id                     = "t9";
+    variants               =
+        "ATtiny9-MAHR: DFN8,    Fmax=12 MHz, T=[-40 C,  85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny9-TS8R: SOT23-6, Fmax=10 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny9-TSHR: SOT23-6, Fmax=12 MHz, T=[-40 C,  85 C], Vcc=[1.8 V, 5.5 V]";
+    mcuid                  = 2;
+    n_interrupts           = 10;
+    signature              = 0x1e 0x90 0x08;
 
     memory "flash"
-        size      = 1024;
-        offset    = 0x4000;
-        page_size = 16;
-        blocksize = 64;
-        readsize  = 16;
+        size               = 1024;
+        page_size          = 16;
+        offset             = 0x4000;
+        blocksize          = 128;
+        readsize           = 16;
     ;
 ;
 
@@ -104,9 +159,15 @@ part parent ".reduced_core_tiny_tpi"
 #------------------------------------------------------------
 
 part parent "t9"
-    id    = "t10";
-    desc  = "ATtiny10";
-    signature = 0x1e 0x90 0x03;
+    desc                   = "ATtiny10";
+    id                     = "t10";
+    variants               =
+        "ATtiny10-MAHR: UDFN8,   Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny10-TS8R: SOT23-6, Fmax=10 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny10-TSHR: SOT23-6, Fmax=12 MHz, T=[-40 C,  85 C], Vcc=[1.8 V, 5.5 V]";
+    mcuid                  = 3;
+    n_interrupts           = 11;
+    signature              = 0x1e 0x90 0x03;
 ;
 
 #------------------------------------------------------------
@@ -114,15 +175,33 @@ part parent "t9"
 #------------------------------------------------------------
 
 part parent ".reduced_core_tiny_tpi"
-    id          = "t20";
-    desc        = "ATtiny20";
-    signature   = 0x1e 0x91 0x0F;
+    desc                   = "ATtiny20";
+    id                     = "t20";
+    variants               =
+        "ATtiny20-CCU:  UFBGA15, Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny20-CCUR: UFBGA15, Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny20-MMH:  VQFN20,  Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny20-MMHR: VQFN20,  Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny20-SSU:  SOIC14,  Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny20-SSUR: SOIC14,  Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny20-UUR:  WLCSP12, Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny20-XU:   TSSOP14, Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny20-XUR:  TSSOP14, Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]";
+    mcuid                  = 4;
+    n_interrupts           = 17;
+    signature              = 0x1e 0x91 0x0f;
 
     memory "flash"
-        size      = 2048;
-        offset    = 0x4000;
-        page_size = 16;
-        blocksize = 128;
+        size               = 2048;
+        page_size          = 16;
+        n_word_writes      = 2;
+        offset             = 0x4000;
+        blocksize          = 128;
+    ;
+
+    memory "fuse"
+        bitmask            = 0x77;
+        n_word_writes      = 2;
     ;
 ;
 
@@ -131,15 +210,30 @@ part parent ".reduced_core_tiny_tpi"
 #------------------------------------------------------------
 
 part parent ".reduced_core_tiny_tpi"
-    id    = "t40";
-    desc  = "ATtiny40";
-    signature = 0x1e 0x92 0x0E;
+    desc                   = "ATtiny40";
+    id                     = "t40";
+    variants               =
+        "ATtiny40-MMH:  VQFN20,  Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny40-MMHR: VQFN20,  Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny40-SU:   SOIC20,  Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny40-SUR:  SOIC20,  Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny40-XU:   TSSOP20, Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny40-XUR:  TSSOP20, Fmax=12 MHz, T=[-40 C, 85 C], Vcc=[1.8 V, 5.5 V]";
+    mcuid                  = 5;
+    n_interrupts           = 18;
+    signature              = 0x1e 0x92 0x0e;
 
     memory "flash"
-        size      = 4096;
-        offset    = 0x4000;
-        page_size = 64;
-        blocksize = 128;
+        size               = 4096;
+        page_size          = 64;
+        n_word_writes      = 4;
+        offset             = 0x4000;
+        blocksize          = 128;
+    ;
+
+    memory "fuse"
+        bitmask            = 0x77;
+        n_word_writes      = 4;
     ;
 ;
 
@@ -148,15 +242,36 @@ part parent ".reduced_core_tiny_tpi"
 #------------------------------------------------------------
 
 part parent ".reduced_core_tiny_tpi"
-    id    = "t102";
-    desc  = "ATtiny102";
-    signature = 0x1e 0x90 0x0C;
+    desc                   = "ATtiny102";
+    id                     = "t102";
+    variants               =
+        "ATtiny102-M7R:   UDFN8, Fmax=12 MHz, T=[-40 C, 105 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny102-M8R:   UDFN8, Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny102-SSFR:  SOIC8, Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny102-SSNR:  SOIC8, Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny102F-M7R:  UDFN8, Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny102F-M8R:  UDFN8, Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny102F-SSFR: SOIC8, Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny102F-SSNR: SOIC8, Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]";
+    mcuid                  = 6;
+    n_interrupts           = 16;
+    signature              = 0x1e 0x90 0x0c;
 
     memory "flash"
-        size      = 1024;
-        offset    = 0x4000;
-        page_size = 16;
-        blocksize = 128;
+        size               = 1024;
+        page_size          = 16;
+        offset             = 0x4000;
+        blocksize          = 128;
+    ;
+
+    memory "fuse"
+        bitmask            = 0x0f;
+    ;
+
+    memory "sigrow"
+        size               = 16;
+        page_size          = 16;
+        offset             = 0x3fc6;
     ;
 ;
 
@@ -165,14 +280,31 @@ part parent ".reduced_core_tiny_tpi"
 #------------------------------------------------------------
 
 part parent ".reduced_core_tiny_tpi"
-    id    = "t104";
-    desc  = "ATtiny104";
-    signature = 0x1e 0x90 0x0B;
+    desc                   = "ATtiny104";
+    id                     = "t104";
+    variants               =
+        "ATtiny104-SSFR:  SOIC14, Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny104-SSNR:  SOIC14, Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny104F-SSFR: SOIC14, Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]",
+        "ATtiny104F-SSNR: SOIC14, Fmax=12 MHz, T=[-40 C, 125 C], Vcc=[1.8 V, 5.5 V]";
+    mcuid                  = 7;
+    n_interrupts           = 16;
+    signature              = 0x1e 0x90 0x0b;
 
     memory "flash"
-        size      = 1024;
-        offset    = 0x4000;
-        page_size = 16;
-        blocksize = 128;
+        size               = 1024;
+        page_size          = 16;
+        offset             = 0x4000;
+        blocksize          = 128;
+    ;
+
+    memory "fuse"
+        bitmask            = 0x0f;
+    ;
+
+    memory "sigrow"
+        size               = 16;
+        page_size          = 16;
+        offset             = 0x3fc6;
     ;
 ;
