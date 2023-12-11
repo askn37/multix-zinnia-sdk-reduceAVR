@@ -1,5 +1,5 @@
 name=MultiX Zinnia Product SDK [reduceAVR]
-version=0.2.8
+version=0.2.9
 
 archive_file_path={build.path}/{archive_file}
 build.extra_flags={build.buildopt} {build.led_pin} {build.macroapi} -DUPLD_MAX_SIZE={upload.maximum_size} '-DSKETCH_PATH={build.source.path}'
