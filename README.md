@@ -32,8 +32,8 @@ avrdude を用いて対象MCUにアップロードするまでの作業フロー
 - __MultiX Zinnia Product SDK [megaAVR]__
   - megaAVR-0 と tinyAVR-0/1/2 系統。（Atmelブランド世代）
 - __MultiX Zinnia Product SDK [modernAVR]__
-  - AVR_DA/DB/DD/EA 系統。（Microchipブランド世代）
-- __MultiX Zinnia Product SDK [reduceAVR]__
+  - AVR_DA/DB/DD/DU/EA/EB 系統。（Microchipブランド世代）
+- __MultiX Zinnia Product SDK [reduceAVR]__ <--
   - 旧世代AVRのうち TPI方式に対応した系統。（Atmelブランド世代）
   - ATtiny4/5/9/10
 
@@ -104,7 +104,9 @@ avrdude を用いて対象MCUにアップロードするまでの作業フロー
 
 SDK種別と対象ブートローダー使用の有無をここで選ぶ。
 
-- __MultiX Zinnia Product SDK [reduceAVR]__
+- __MultiX Zinnia Product SDK [megaAVR]__
+- __MultiX Zinnia Product SDK [modernAVR]__
+- __MultiX Zinnia Product SDK [reduceAVR]__ <--
   - ATtiny4/5/9/10
 
 ## ボード選択サブメニュー
