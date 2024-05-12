@@ -39,8 +39,8 @@ extern "C" {
 #endif
 
 inline void initVariant (void) {
-  PORTCTRL_DIDIS = ~0;  /* Digital Input Disable all pin */
   _CLKCTRL_SETUP();
+  PORTCTRL_DIDIS = ~0;  /* Digital Input Disable all pin */
 }
 
 #ifdef __cplusplus
