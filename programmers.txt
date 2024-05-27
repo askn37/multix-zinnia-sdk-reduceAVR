@@ -19,6 +19,13 @@
 21_pickit4_updi.program.tool=avrdude
 21_pickit4_updi.program.extra_params=-P usb
 
+25_medbg.name=Xplained Mini/Nano (mEDBG: ATmega32u4)
+25_medbg.communication=usb
+25_medbg.protocol=xplainedmini_tpi
+25_medbg.program.protocol=jtagice3_updi
+25_medbg.program.tool=avrdude
+25_medbg.program.extra_params=-Pusb
+
 31_usbasp.name=USBasp
 31_usbasp.communication=usb
 31_usbasp.protocol=usbasp

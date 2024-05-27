@@ -36,6 +36,7 @@ avrdude を用いて対象MCUにアップロードするまでの作業フロー
 - __MultiX Zinnia Product SDK [reduceAVR]__ <--
   - 旧世代AVRのうち TPI方式に対応した系統。（Atmelブランド世代）
   - ATtiny4/5/9/10
+  - ATtiny104 (試験的対応)
 
 > この分割は NVM書換プロトコルおよび/すなわちブートローダーの相互共有性による。\
 > 共通基盤の AVR-GCC/AVR-LIBC toolchain は既知の AVR 8bit 系全種に対応している。
@@ -83,6 +84,7 @@ avrdude を用いて対象MCUにアップロードするまでの作業フロー
   - フルスペックの公式開発環境が別途必須なのでエンドユーザーのPC環境によっては難がある。\
     Arduino IDEの動作スペックより数倍大きなディスク空容量やハードウェア性能とIDE操作習熟が必要。
   - reduceAVR系MCUはデバッグトレース不可能。（マシン語レベルで BREAK命令非実装）
+- Xplained Nano ATtiny104
 - dryrun -- 実際には何もしないダミーの書込器。
   - 各種設定の論理的妥当性を検証するのに使用する。
 
@@ -108,6 +110,8 @@ SDK種別と対象ブートローダー使用の有無をここで選ぶ。
 - __MultiX Zinnia Product SDK [modernAVR]__
 - __MultiX Zinnia Product SDK [reduceAVR]__ <--
   - ATtiny4/5/9/10
+  - ATtiny104 (試験的対応)
+  - ATtiny102 は非対応 (2024/05時点)
 
 ## ボード選択サブメニュー
 
@@ -123,7 +127,7 @@ Arduino IDE でこのSDKを選択すると、
   - __FUSE無関係に常時どれでも変更可能__
   - 内蔵発振器による 8MHz〜1MHz
   - WDT用副発振器による 125kHz〜500Hz
-- __FUSE PB3__ -- リセットピン用途変更（FUSE設定）
+- __FUSE RSTCFG__ -- リセットピン用途変更（FUSE設定）
   - __原則、既定値からの変更禁止（復元にはHV対応書換器が必須）__
 - __Build Option__ -- DEBUGマクロ有無（任意選択）
   - Build Release -- 既定値（NDEBUG設定）
@@ -136,18 +140,20 @@ Arduino IDE でこのSDKを選択すると、
   - Standard Library All Disable
     - フルアセンブラ記述/純粋C言語環境（LIBC無効）
 - __LED_BUILTIN Select__ -- 既定LED選択
-  - PIN_PB1 -- TPI4AVRの TCLK 信号端子インジケータ（既定）
-  - PIN_PB2 -- TPI書込時の未使用端子（兼INT0割込端子）
+  - PIN_PB1 -- (ATtiny4/5/9/10) TPI4AVRの TCLK 信号端子インジケータ（既定）
+  - PIN_PB2 -- (ATtiny4/5/9/10) TPI書込時の未使用端子（兼INT0割込端子）
+  - PIN_PA5 -- (ATtiny104) Xplained Nano のオンボードLED
 - __シリアルポート選択__
   - 環境依存
 - __書込装置選択__
   - TPI4AVR over UART (Standard)
   - TPI4AVR over UART (HV Recomended) -- __HV書込対応__
   - PICkit4
+  - Xplained Mini/Nano (mEDBG: ATmega32u4) -- __XNano ATtiny104対応__
   - USBasp
   - AVRISP mkII
 
-> `FUSE PB3` -> `PB3 pin=Reset`選択以外に書換えた場合の復元は __HV対応書込器が必須。__\
+> `FUSE RSTCFG` -> `Pxx pin=Reset`選択以外に書換えた場合の復元は __HV対応書込器が必須。__\
 > `Build API{} -> `Standard Library All Disable`選択は、一切の既定コンパイル前提を除去する。
 __AVRrc では単純な加減算以外はC/C++言語で計算不能になることに注意。__
 
@@ -155,11 +161,19 @@ __AVRrc では単純な加減算以外はC/C++言語で計算不能になるこ�
 
 ### LED_BUILTIN
 
-既定値では`PIN_PB1`となっている。
+(ATtiny4/5/9/10) 既定値では`PIN_PB1`となっている。
 これはこの端子が`TPI`書込時の`TCLK`信号であり、書込器のインジケータLEDをユーザー制御で利用可能なことを期待している。
 そうでない書込器の場合は、ボードメニューの`LED_BUILTIN Select`を操作することで`PIN_PB2`に変更できる。
 
-### 書込器でのスケッチ書込 ```Ctrl+U``` ```⌘+U```
+### Xplained Nano ATtiny104
+
+(ATtiny104専用) `LED_BUILTIN`の既定値は`PIN_PA5`である。
+また`SW_BUILTIN`の既定値は`PIN_PB1`である。
+`FUSE PA2 pin=Reset`の変更は、別途 __HV対応書込器__ がなければ復元不可能のため、推奨されない。
+
+ATtiny102/104は`USART0`周辺機能を有するが、一般的な標準入出力ライブラリを組み込む余地がないため、SDKとしての APIは用意されていない。
+
+### 書込器でのスケッチ書込 `Ctrl+U` `⌘+U`
 
 FUSEも同時に更新される。
 Arduino IDE のシリアルコンソールを閉じる必要はない。
@@ -172,7 +186,7 @@ Arduino IDE のシリアルコンソールを閉じる必要はない。
 
 reduceAVR系統では任意の Clock 選択が有効となる。
 
-### ビルド出力確認 ```Ctrl+Alt+S``` ```⌘+Alt+S```
+### ビルド出力確認 `Ctrl+Alt+S` `⌘+Alt+S`
 
 （書込み可能な場合の）スケッチフォルダに、
 スケッチがビルドされた HEX ファイル、
@@ -191,6 +205,7 @@ reduceAVR系統は ブートローダーが支援されない。
 
 - 0.2.13 (24/05/12)
   - `7.3.0-avr8-gnu-toolchain-240510`に更新。
+  - __Xplained Nano ATTiny104__ に試験的対応。
 
 - 0.2.10 (23/12/20)
   - `7.3.0-avr8-gnu-toolchain-231214`に更新。

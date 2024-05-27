@@ -53,10 +53,10 @@
 #define VPORTDIR_255_253
 
 // pinModeMacro(PIN,OUTPUT) -> Break-Before-Make Mode Enable -> SBI VPORTx.DIR, y
-#define VPORTDIR_224_252 do { __asm__ volatile ("SBI 0x0C, 2\nSBI 0x01, 0\nCBI 0x17, 0"); } while (0)
-#define VPORTDIR_225_252 do { __asm__ volatile ("SBI 0x0C, 2\nSBI 0x01, 1\nCBI 0x17, 1"); } while (0)
-#define VPORTDIR_226_252 do { __asm__ volatile ("SBI 0x0C, 2\nSBI 0x01, 2\nCBI 0x17, 2"); } while (0)
-#define VPORTDIR_227_252 do { __asm__ volatile ("SBI 0x0C, 2\nSBI 0x01, 3\nCBI 0x17, 3"); } while (0)
+#define VPORTDIR_224_252 do { __asm__ volatile ("SBI 0x0C, 1\nSBI 0x01, 0\nCBI 0x17, 0"); } while (0)
+#define VPORTDIR_225_252 do { __asm__ volatile ("SBI 0x0C, 1\nSBI 0x01, 1\nCBI 0x17, 1"); } while (0)
+#define VPORTDIR_226_252 do { __asm__ volatile ("SBI 0x0C, 1\nSBI 0x01, 2\nCBI 0x17, 2"); } while (0)
+#define VPORTDIR_227_252 do { __asm__ volatile ("SBI 0x0C, 1\nSBI 0x01, 3\nCBI 0x17, 3"); } while (0)
 
 // pinModeMacro(PIN,INPUT_PULLUP) -> CBI VPORTx.DIR, y
 #define VPORTDIR_224_250 do { __asm__ volatile ("CBI 0x01, 0\nSBI 0x03, 0\nCBI 0x17, 0"); } while (0)

@@ -1,6 +1,6 @@
 menu.01_variant=Variant
 menu.02_clock=Master Clock
-menu.21_resetpin=FUSE PB3
+menu.21_resetpin=FUSE RSTCFG
 menu.51_buildopt=Build Option
 menu.52_macroapi=Build API
 menu.54_led_select=LED_BUILTIN Select
@@ -22,7 +22,6 @@ menu.54_led_select=LED_BUILTIN Select
 01_ATtiny10.build.led_pin=-DLED_BUILTIN=PIN_PB1
 01_ATtiny10.build.macroapi=-DENABLE_MACRO_API
 01_ATtiny10.build.tool=
-
 01_ATtiny10.menu.01_variant.01_ATtiny10.build.board=AVR_ATTINY10
 01_ATtiny10.menu.01_variant.01_ATtiny10.build.mcu=attiny10
 01_ATtiny10.menu.01_variant.01_ATtiny10.build.variant=attiny10
@@ -47,7 +46,6 @@ menu.54_led_select=LED_BUILTIN Select
 01_ATtiny10.menu.01_variant.04_ATtiny4.upload.maximum_data_size=32
 01_ATtiny10.menu.01_variant.04_ATtiny4.upload.maximum_size=512
 01_ATtiny10.menu.01_variant.04_ATtiny4=ATtiny4 (512B+32B)
-
 01_ATtiny10.menu.02_clock.01_8MHz.build.f_cpu=8000000L
 01_ATtiny10.menu.02_clock.01_8MHz=Internal 8 MHz (default)
 01_ATtiny10.menu.02_clock.02_4MHz.build.f_cpu=4000000L
@@ -81,4 +79,59 @@ menu.54_led_select=LED_BUILTIN Select
 01_ATtiny10.menu.54_led_select.01_PB1=PIN_PB1
 01_ATtiny10.menu.54_led_select.02_PB2.build.led_pin=-DLED_BUILTIN=PIN_PB2
 01_ATtiny10.menu.54_led_select.02_PB2=PIN_PB2
+
+
+03_ATtiny104.name=ATtiny104
+03_ATtiny104.upload.maximum_data_size=32
+03_ATtiny104.upload.maximum_size=1024
+03_ATtiny104.upload.tool=
+03_ATtiny104.bootloader.FUSE=0b1111111{bootloader.reset_bit}
+03_ATtiny104.bootloader.LOCK=0xFF
+03_ATtiny104.bootloader.reset_bit=1
+03_ATtiny104.bootloader.tool=avrdude
+03_ATtiny104.build.buildopt=-DNDEBUG
+03_ATtiny104.build.board=AVR_ATTINY104
+03_ATtiny104.build.compat=
+03_ATtiny104.build.core=reduceAVR
+03_ATtiny104.build.extra_flags={build.buildopt} {build.led_pin} {build.macroapi}
+03_ATtiny104.build.led_pin=-DLED_BUILTIN=PIN_PA5
+03_ATtiny104.build.macroapi=-DENABLE_MACRO_API
+03_ATtiny104.build.tool=
+03_ATtiny104.menu.01_variant.01_ATtiny104.build.board=AVR_ATTINY104
+03_ATtiny104.menu.01_variant.01_ATtiny104.build.mcu=attiny104
+03_ATtiny104.menu.01_variant.01_ATtiny104.build.variant=attiny104
+03_ATtiny104.menu.01_variant.01_ATtiny104.upload.maximum_data_size=32
+03_ATtiny104.menu.01_variant.01_ATtiny104.upload.maximum_size=1024
+03_ATtiny104.menu.01_variant.01_ATtiny104=ATtiny104 (1KiB+32B with ADC)
+03_ATtiny104.menu.02_clock.01_8MHz.build.f_cpu=8000000L
+03_ATtiny104.menu.02_clock.01_8MHz=Internal 8 MHz (default)
+03_ATtiny104.menu.02_clock.02_4MHz.build.f_cpu=4000000L
+03_ATtiny104.menu.02_clock.02_4MHz=Internal 4 MHz
+03_ATtiny104.menu.02_clock.03_2MHz.build.f_cpu=2000000L
+03_ATtiny104.menu.02_clock.03_2MHz=Internal 2 MHz
+03_ATtiny104.menu.02_clock.04_1MHz.build.f_cpu=1000000L
+03_ATtiny104.menu.02_clock.04_1MHz=Internal 1 MHz
+03_ATtiny104.menu.02_clock.11_128kHz.build.f_cpu=128000L
+03_ATtiny104.menu.02_clock.11_128kHz=Internal 128.000 kHz kHz (ULP)
+03_ATtiny104.menu.02_clock.13_32kHz.build.f_cpu=32000L
+03_ATtiny104.menu.02_clock.13_32kHz=Internal 32.000 kHz kHz (ULP)
+03_ATtiny104.menu.21_resetpin.01_reset.bootloader.reset_bit=1
+03_ATtiny104.menu.21_resetpin.01_reset=PA2 pin=Reset
+03_ATtiny104.menu.21_resetpin.02_gpio.bootloader.reset_bit=0
+03_ATtiny104.menu.21_resetpin.02_gpio=PA2 pin=GPIO (DANGER:NOT RECOMMENDED)
+03_ATtiny104.menu.51_buildopt.01_Release.build.buildopt=-DNDEBUG
+03_ATtiny104.menu.51_buildopt.01_Release=Build Release (default)
+03_ATtiny104.menu.51_buildopt.02_Debug1.build.buildopt=-DDEBUG=1
+03_ATtiny104.menu.51_buildopt.02_Debug1=Build DEBUG=1
+03_ATtiny104.menu.51_buildopt.03_Debug2.build.buildopt=-DDEBUG=2
+03_ATtiny104.menu.51_buildopt.03_Debug2=Build DEBUG=2
+03_ATtiny104.menu.52_macroapi.01_Enable.build.macroapi=-DENABLE_MACRO_API
+03_ATtiny104.menu.52_macroapi.01_Enable=Macro API Enable (default)
+03_ATtiny104.menu.52_macroapi.02_Disable.build.macroapi=
+03_ATtiny104.menu.52_macroapi.02_Disable=Macro API Disable
+03_ATtiny104.menu.52_macroapi.03_AllDisable.build.macroapi=
+03_ATtiny104.menu.52_macroapi.03_AllDisable.compiler.ldflags=-nostartfiles -nostdlib
+03_ATtiny104.menu.52_macroapi.03_AllDisable=Standard Library All Disable
+03_ATtiny104.menu.54_led_select.01_PA5.build.led_pin=-DLED_BUILTIN=PIN_PA5
+03_ATtiny104.menu.54_led_select.01_PA5=PIN_PA5
 
