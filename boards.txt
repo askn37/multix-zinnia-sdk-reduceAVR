@@ -75,10 +75,12 @@ menu.54_led_select=LED_BUILTIN Select
 01_ATtiny10.menu.52_macroapi.03_AllDisable.build.macroapi=
 01_ATtiny10.menu.52_macroapi.03_AllDisable.compiler.ldflags=-nostartfiles -nostdlib
 01_ATtiny10.menu.52_macroapi.03_AllDisable=Standard Library All Disable
-01_ATtiny10.menu.54_led_select.01_PB1.build.led_pin=-DLED_BUILTIN=PIN_PB1
-01_ATtiny10.menu.54_led_select.01_PB1=PIN_PB1
-01_ATtiny10.menu.54_led_select.02_PB2.build.led_pin=-DLED_BUILTIN=PIN_PB2
-01_ATtiny10.menu.54_led_select.02_PB2=PIN_PB2
+01_ATtiny10.menu.54_led_select.01_PB2.build.led_pin=-DLED_BUILTIN=PIN_PB2
+01_ATtiny10.menu.54_led_select.01_PB2=PIN_PB2 4:INT0/PCINT2
+01_ATtiny10.menu.54_led_select.02_PB1.build.led_pin=-DLED_BUILTIN=PIN_PB1
+01_ATtiny10.menu.54_led_select.02_PB1=PIN_PB1 3:TCLK/OC0B
+01_ATtiny10.menu.54_led_select.03_PB0.build.led_pin=-DLED_BUILTIN=PIN_PB0
+01_ATtiny10.menu.54_led_select.03_PB0=PIN_PB0 1:TDAT/OC0A
 
 
 03_ATtiny104.name=ATtiny104
@@ -133,5 +135,5 @@ menu.54_led_select=LED_BUILTIN Select
 03_ATtiny104.menu.52_macroapi.03_AllDisable.compiler.ldflags=-nostartfiles -nostdlib
 03_ATtiny104.menu.52_macroapi.03_AllDisable=Standard Library All Disable
 03_ATtiny104.menu.54_led_select.01_PA5.build.led_pin=-DLED_BUILTIN=PIN_PA5
-03_ATtiny104.menu.54_led_select.01_PA5=PIN_PA5
+03_ATtiny104.menu.54_led_select.01_PA5=PIN_PA5 7:OC0B* for Xplained Nano
 

@@ -24,7 +24,7 @@
 25_medbg.protocol=xplainedmini_tpi
 25_medbg.program.protocol=jtagice3_updi
 25_medbg.program.tool=avrdude
-25_medbg.program.extra_params=-Pusb
+25_medbg.program.extra_params=-P usb
 
 31_usbasp.name=USBasp
 31_usbasp.communication=usb
