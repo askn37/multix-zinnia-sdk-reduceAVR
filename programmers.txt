@@ -1,16 +1,9 @@
-01_updi4avr.name=TPI4AVR over UART (Standard)
-01_updi4avr.communication=serial
-01_updi4avr.protocol=tpi4avr
-01_updi4avr.program.protocol=jtagmkii_updi
-01_updi4avr.program.tool=avrdude
-01_updi4avr.program.extra_params=-P {serial.port} -C "{runtime.platform.path}/avrdude.conf.TPI4AVR"
-
-02_updi4avr_HV.name=TPI4AVR over UART (HV Enable)
-02_updi4avr_HV.communication=serial
-02_updi4avr_HV.protocol=tpi4avr
-02_updi4avr_HV.program.protocol=jtagmkii_updi
-02_updi4avr_HV.program.tool=avrdude
-02_updi4avr_HV.program.extra_params=-P {serial.port} -F -C "{runtime.platform.path}/avrdude.conf.TPI4AVR"
+01_updi4avr_tpi.name=UPDI4AVR-USB (EDBG: TPI)
+01_updi4avr_tpi.communication=usb
+01_updi4avr_tpi.protocol=pickit4_tpi
+01_updi4avr_tpi.program.protocol=jtagice3_tpi
+01_updi4avr_tpi.program.tool=avrdude
+01_updi4avr_tpi.program.extra_params=-P usb:04D8:0B15
 
 21_pickit4_updi.name=PICkit4 over USB (TPI)
 21_pickit4_updi.communication=usb
@@ -22,7 +15,7 @@
 25_medbg.name=Xplained Mini/Nano (mEDBG: ATmega32u4)
 25_medbg.communication=usb
 25_medbg.protocol=xplainedmini_tpi
-25_medbg.program.protocol=jtagice3_updi
+25_medbg.program.protocol=jtagice3_tpi
 25_medbg.program.tool=avrdude
 25_medbg.program.extra_params=-P usb
 
@@ -45,4 +38,4 @@
 99_dryrun.protocol=dryrun
 99_dryrun.program.protocol=dryrun
 99_dryrun.program.tool=avrdude
-99_dryrun.program.extra_params=-P usb -C "{runtime.platform.path}/avrdude.conf.TPI4AVR"
+99_dryrun.program.extra_params=-P usb
