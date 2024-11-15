@@ -3,39 +3,39 @@
 01_updi4avr_tpi.protocol=pickit4_tpi
 01_updi4avr_tpi.program.protocol=jtagice3_tpi
 01_updi4avr_tpi.program.tool=avrdude
-01_updi4avr_tpi.program.extra_params=-P usb:04D8:0B15
+01_updi4avr_tpi.program.extra_params=-Pusb:04D8:0B15
 
-21_pickit4_updi.name=PICkit4 over USB (TPI)
+21_pickit4_updi.name=PICkit4 (EDBG: TPI)
 21_pickit4_updi.communication=usb
 21_pickit4_updi.protocol=pickit4_tpi
 21_pickit4_updi.program.protocol=jtagice3_updi
 21_pickit4_updi.program.tool=avrdude
-21_pickit4_updi.program.extra_params=-P usb
+21_pickit4_updi.program.extra_params=-Pusb
 
-25_medbg.name=Xplained Mini/Nano (mEDBG: ATmega32u4)
-25_medbg.communication=usb
-25_medbg.protocol=xplainedmini_tpi
-25_medbg.program.protocol=jtagice3_tpi
-25_medbg.program.tool=avrdude
-25_medbg.program.extra_params=-P usb
+25_xplainedmini_updi.name=Xplained Mini/Nano (mEDBG: ATmega32u4)
+25_xplainedmini_updi.communication=usb
+25_xplainedmini_updi.protocol=xplainedmini_updi
+25_xplainedmini_updi.program.protocol=jtagice3_updi
+25_xplainedmini_updi.program.tool=avrdude
+25_xplainedmini_updi.program.extra_params=-Pusb
 
 31_usbasp.name=USBasp
 31_usbasp.communication=usb
 31_usbasp.protocol=usbasp
 31_usbasp.program.protocol=usbasp
 31_usbasp.program.tool=avrdude
-31_usbasp.program.extra_params=-P usb
+31_usbasp.program.extra_params=-Pusb
 
 32_avrispmkii.name=AVRISP mkII
 32_avrispmkii.communication=usb
 32_avrispmkii.protocol=avrispv2
 32_avrispmkii.program.protocol=stk500v2
 32_avrispmkii.program.tool=avrdude
-32_avrispmkii.program.extra_params=-P usb
+32_avrispmkii.program.extra_params=-Pusb
 
 99_dryrun.name=dryrun (Emulates programming without a programmer)
 99_dryrun.communication=usb
 99_dryrun.protocol=dryrun
 99_dryrun.program.protocol=dryrun
 99_dryrun.program.tool=avrdude
-99_dryrun.program.extra_params=-P usb
+99_dryrun.program.extra_params=-Pusb
