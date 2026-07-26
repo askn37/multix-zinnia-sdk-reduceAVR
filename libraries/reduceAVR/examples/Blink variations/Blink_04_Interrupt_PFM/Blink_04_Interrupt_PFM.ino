@@ -16,11 +16,12 @@
 #include BUILDSTOP
 #endif
 
+volatile bool cmp_init = true;
+
 void setup (void) {
   pinModeMacro(LED_BUILTIN, OUTPUT);
 
   TCB0_INTCTRL = TCB_CMPA_bm;
-  TCB0_CMPA = F_CPU / 3490;
   TCB0_CTRLA = (TCB_WGMODE_CTC_CMPA_gc & TCB_WGMODE_A_gm);
   TCB0_CTRLB = (TCB_WGMODE_CTC_CMPA_gc & TCB_WGMODE_B_gm) | TCB_CLKSEL_CLKDIV64_gc;
 
@@ -31,6 +32,12 @@ void setup (void) {
 
 ISR(TCB0_CMPA_vect) {
   digitalWriteMacro(LED_BUILTIN, TOGGLE);
+  if (cmp_init) {
+    cmp_init = false;
+    uint16_t _temp = TCB0_CNT;
+    _temp -= _temp >> 6;
+    TCB0_CMPA = _temp;
+  }
 }
 
 ISR_ALIAS(WDT_vect, TCB0_CMPA_vect);
