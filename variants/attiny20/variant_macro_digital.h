@@ -1,14 +1,14 @@
 /**
  * @file variant_macro_digital.h
  * @author askn (K.Sato) multix.jp
- * @brief ATtiny102/104 Macro/MicroAPI
- * @version 0.4.2
- * @date 2026-07-20
+ * @brief Macro/Micro API digital pin control
+ * @version 0.1
+ * @date 2024-05-27
  *
- * @copyright Copyright (c) 2026 askn37 at github.com
+ * @copyright Copyright (c) 2024 askn37 at github.com
  *
  */
-/* MIT License : https://askn37.github.io/LICENSE.html */
+// MIT License : https://askn37.github.io/LICENSE.html
 
 #pragma once
 

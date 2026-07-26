@@ -11,14 +11,17 @@
 
 /* Using Macro/Micro API */
 
-void setup (void) {
-  /* Enable OC0B = PIN_PB1 */
-  pinModeMacro(PIN_PB1, OUTPUT);
+#if !defined(HAVE_TCB0)
+#error 16-bit timer is not implemented
+#include BUILDSTOP
+#endif
 
-  /* Enable TIM0 output OC0B Divider 1024 */
-  TIM0_CMPA = F_CPU / 1024 - 1;
-  TIM0_CTRLA = TIM_WGMODE_CTC_CMPA_L_gc | TIM_CPMODE_OC0B_TOGGLE_gc;
-  TIM0_CTRLB = TIM_WGMODE_CTC_CMPA_H_gc | TIM_CLKSEL_CLKDIV1024_gc;
+void setup (void) {
+  pinModeMacro(PIN_TCB0_WOB, OUTPUT);
+
+  TCB0_CMPA = F_CPU / 1024 - 1;
+  TCB0_CTRLA = (TCB_WGMODE_CTC_CMPA_gc & TCB_WGMODE_A_gm) | TCB_WOB_TOGGLE_gc;
+  TCB0_CTRLB = (TCB_WGMODE_CTC_CMPA_gc & TCB_WGMODE_B_gm) | TCB_CLKSEL_CLKDIV1024_gc;
 
   set_sleep_mode(SLEEP_MODE_IDLE);
   sleep_enable();

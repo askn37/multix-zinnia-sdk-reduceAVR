@@ -4,20 +4,22 @@
 01_updi4avr_tpi.program.protocol=jtagice3_tpi
 01_updi4avr_tpi.program.tool=avrdude
 01_updi4avr_tpi.program.extra_params=-Pusb:04D8:0B15
+# 01_updi4avr_tpi.program.extra_params=-Pusb:03EB:2175
 
-21_pickit4_updi.name=PICkit4 (EDBG: TPI)
-21_pickit4_updi.communication=usb
-21_pickit4_updi.protocol=pickit4_tpi
-21_pickit4_updi.program.protocol=jtagice3_updi
-21_pickit4_updi.program.tool=avrdude
-21_pickit4_updi.program.extra_params=-Pusb
+21_pickit4_tpi.name=PICkit4 (EDBG: TPI)
+21_pickit4_tpi.communication=usb
+21_pickit4_tpi.protocol=pickit4_tpi
+21_pickit4_tpi.program.protocol=jtagice3_tpi
+21_pickit4_tpi.program.tool=avrdude
+21_pickit4_tpi.program.extra_params=-Pusb
+# 21_pickit4_tpi.program.extra_params=-Pusb:03EB:2175
 
-25_xplainedmini_updi.name=Xplained Mini/Nano (mEDBG: ATmega32u4)
-25_xplainedmini_updi.communication=usb
-25_xplainedmini_updi.protocol=xplainedmini_updi
-25_xplainedmini_updi.program.protocol=jtagice3_updi
-25_xplainedmini_updi.program.tool=avrdude
-25_xplainedmini_updi.program.extra_params=-Pusb
+25_xplainedmini_tpi.name=Xplained Mini/Nano (mEDBG: ATmega32u4)
+25_xplainedmini_tpi.communication=usb
+25_xplainedmini_tpi.protocol=xplainedmini_tpi
+25_xplainedmini_tpi.program.protocol=jtagice3_tpi
+25_xplainedmini_tpi.program.tool=avrdude
+25_xplainedmini_tpi.program.extra_params=-Pusb
 
 31_usbasp.name=USBasp
 31_usbasp.communication=usb
