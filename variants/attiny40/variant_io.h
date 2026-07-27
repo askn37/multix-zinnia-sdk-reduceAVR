@@ -691,9 +691,9 @@ typedef enum ADC_ATS_enum
     ADC_ATMODE_EXTINT_gc        = (2<<ADTS0),   /* External Interrupt Request */
     ADC_ATMODE_TCA0_CMPA_gc     = (3<<ADTS0),   /* Timer/Counter 0 Compare Match A */
     ADC_ATMODE_TCA0_OVF_gc      = (4<<ADTS0),   /* Timer/Counter 0 Overflow */
-    ADC_ATMODE_TCB0_CMPB_gc     = (5<<ADTS0),   /* Timer/Counter 1 Compare Match B */
-    ADC_ATMODE_TCB0_OVF_gc      = (6<<ADTS0),   /* Timer/Counter 1 Overflow */
-    ADC_ATMODE_TCB0_CAPT_gc     = (7<<ADTS0)    /* Timer/Counter 1 Capture Event */
+    ADC_ATMODE_TCC0_CMPB_gc     = (5<<ADTS0),   /* Timer/Counter 1 Compare Match B */
+    ADC_ATMODE_TCC0_OVF_gc      = (6<<ADTS0),   /* Timer/Counter 1 Overflow */
+    ADC_ATMODE_TCC0_CAPT_gc     = (7<<ADTS0)    /* Timer/Counter 1 Capture Event */
 } ADC_ATS_t;
 
 
@@ -1001,7 +1001,7 @@ typedef enum TCC_CLKSEL_enum
     TCC_CLKSEL_CLKDIV1024_gc    = (5<<CS10),    /* CLK_PER/1024 (From Prescaler) */
     TCC_CLKSEL_T1_FALLING_gc    = (6<<CS10),    /* T1 pin edge falling (T1 == PB0) */
     TCC_CLKSEL_T1_RISING_gc     = (7<<CS10),    /* T1 pin edge rising (T1 == PB0) */
-} TCB_CLKSEL_t;
+} TCC_CLKSEL_t;
 
 
 /*
@@ -1231,14 +1231,14 @@ IO Module Instances. Mapped to memory.
 #define PORTA_PORT_vect_num     PCINT0_vect_num
 #define PORTB_PORT_vect         PCINT1_vect
 #define PORTB_PORT_vect_num     PCINT1_vect_num
-#define TCB0_CAPT_vect          TIM1_CAPT_vect
-#define TCB0_CAPT_vect_num      TIM1_CAPT_vect_num
-#define TCB0_CMPA_vect          TIM1_COMPA_vect
-#define TCB0_CMPA_vect_num      TIM1_COMPA_vect_num
-#define TCB0_CMPB_vect          TIM1_COMPB_vect
-#define TCB0_CMPB_vect_num      TIM1_COMPB_vect_num
-#define TCB0_OVF_vect           TIM1_OVF_vect
-#define TCB0_OVF_vect_num       TIM1_OVF_vect_num
+#define TCC0_CAPT_vect          TIM1_CAPT_vect
+#define TCC0_CAPT_vect_num      TIM1_CAPT_vect_num
+#define TCC0_CMPA_vect          TIM1_COMPA_vect
+#define TCC0_CMPA_vect_num      TIM1_COMPA_vect_num
+#define TCC0_CMPB_vect          TIM1_COMPB_vect
+#define TCC0_CMPB_vect_num      TIM1_COMPB_vect_num
+#define TCC0_OVF_vect           TIM1_OVF_vect
+#define TCC0_OVF_vect_num       TIM1_OVF_vect_num
 #define TCA0_CMPA_vect          TIM0_COMPA_vect
 #define TCA0_CMPA_vect_num      TIM0_COMPA_vect_num
 #define TCA0_CMPB_vect          TIM0_COMPB_vect

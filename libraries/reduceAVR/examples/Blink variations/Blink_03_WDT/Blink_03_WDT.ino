@@ -2,12 +2,13 @@
  * @file Blink_03_WDT.ino
  * @author askn (K.Sato) multix.jp
  * @brief Blink using delay timer sketch code
- * @version 0.1
- * @date 2022-12-29
+ * @version 0.4.2
+ * @date 2026-07-26
  *
- * @copyright Copyright (c) 2022
+ * @copyright Copyright (c) 2026 askn37 at github.com
  *
  */
+/* MIT License : https://askn37.github.io/LICENSE.html */
 
 /* Using Macro/Micro API */
 
