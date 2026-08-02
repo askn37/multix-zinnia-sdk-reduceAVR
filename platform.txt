@@ -1,5 +1,5 @@
 name=MultiX Zinnia Product SDK [reduceAVR]
-version=0.4.2
+version=0.4.3
 
 archive_file_path={build.path}/{archive_file}
 bootloader.tool=avrdude
@@ -53,18 +53,18 @@ recipe.c.combine.pattern="{compiler.path}{compiler.c.elf.cmd}" {compiler.c.elf.f
 recipe.c.o.pattern="{compiler.path}{compiler.c.cmd}" {compiler.c.flags} -mmcu={build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.c.extra_flags} {build.flags} {includes} "{source_file}" -o "{object_file}"
 recipe.cpp.o.pattern="{compiler.path}{compiler.cpp.cmd}" {compiler.cpp.flags} -mmcu={build.mcu} -DF_CPU={build.f_cpu} -DARDUINO={runtime.ide.version} -DARDUINO_{build.board} -DARDUINO_ARCH_{build.arch} {compiler.cpp.extra_flags} {build.flags} {includes} "{source_file}" -o "{object_file}"
 recipe.hooks.objcopy.postobjcopy.1.pattern.linux=chmod +x "{runtime.platform.path}/scripts/create_disassembler_listing.sh"
-recipe.hooks.objcopy.postobjcopy.1.pattern.macosx=chmod +x "{runtime.platform.path}/scripts/create_disassembler_listing.sh"
-recipe.hooks.objcopy.postobjcopy.1.pattern.windows=cmd /C "{compiler.path}{compiler.objdump.cmd}" {compiler.objdump.flags} "{build.path}/{build.project_name}.elf" > "{build.path}/{build.project_name}.{build.mcu}_{build.f_cpu}.lst"
 recipe.hooks.objcopy.postobjcopy.2.pattern.linux="{runtime.platform.path}/scripts/create_disassembler_listing.sh" "{compiler.path}{compiler.objdump.cmd}" "{compiler.objdump.flags}" "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.{build.mcu}_{build.f_cpu}.lst"
+recipe.hooks.objcopy.postobjcopy.1.pattern.macosx=chmod +x "{runtime.platform.path}/scripts/create_disassembler_listing.sh"
 recipe.hooks.objcopy.postobjcopy.2.pattern.macosx="{runtime.platform.path}/scripts/create_disassembler_listing.sh" "{compiler.path}{compiler.objdump.cmd}" "{compiler.objdump.flags}" "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.{build.mcu}_{build.f_cpu}.lst"
+recipe.hooks.objcopy.postobjcopy.1.pattern.windows=cmd /C "{compiler.path}{compiler.objdump.cmd}" {compiler.objdump.flags} "{build.path}/{build.project_name}.elf" > "{build.path}/{build.project_name}.{build.mcu}_{build.f_cpu}.lst"
 recipe.hooks.savehex.presavehex.1.pattern.linux=chmod +x "{runtime.platform.path}/scripts/delete_merged_output.sh"
-recipe.hooks.savehex.presavehex.1.pattern.macosx=chmod +x "{runtime.platform.path}/scripts/delete_merged_output.sh"
-recipe.hooks.savehex.presavehex.1.pattern.windows="{runtime.platform.path}/scripts/delete_merged_output.bat" {build.export_merged_output} "{build.path}\{build.project_name}.with_bootloader.hex"
 recipe.hooks.savehex.presavehex.2.pattern.linux="{runtime.platform.path}/scripts/delete_merged_output.sh" {build.export_merged_output} "{build.path}/{build.project_name}.with_bootloader.hex"
-recipe.hooks.savehex.presavehex.2.pattern.macosx="{runtime.platform.path}/scripts/delete_merged_output.sh" {build.export_merged_output} "{build.path}/{build.project_name}.with_bootloader.hex"
-recipe.hooks.savehex.presavehex.2.pattern.windows=cmd /C copy "{build.path}\{build.project_name}.{build.mcu}_{build.f_cpu}.lst" "{sketch_path}"
 recipe.hooks.savehex.presavehex.3.pattern.linux=cp "{build.path}/{build.project_name}.{build.mcu}_{build.f_cpu}.lst" "{sketch_path}"
+recipe.hooks.savehex.presavehex.1.pattern.macosx=chmod +x "{runtime.platform.path}/scripts/delete_merged_output.sh"
+recipe.hooks.savehex.presavehex.2.pattern.macosx="{runtime.platform.path}/scripts/delete_merged_output.sh" {build.export_merged_output} "{build.path}/{build.project_name}.with_bootloader.hex"
 recipe.hooks.savehex.presavehex.3.pattern.macosx=cp "{build.path}/{build.project_name}.{build.mcu}_{build.f_cpu}.lst" "{sketch_path}"
+recipe.hooks.savehex.presavehex.1.pattern.windows="{runtime.platform.path}/scripts/delete_merged_output.bat" {build.export_merged_output} "{build.path}\{build.project_name}.with_bootloader.hex"
+recipe.hooks.savehex.presavehex.2.pattern.windows=cmd /C copy "{build.path}\{build.project_name}.{build.mcu}_{build.f_cpu}.lst" "{sketch_path}"
 recipe.objcopy.eep.pattern="{compiler.path}{compiler.objcopy.cmd}" {compiler.objcopy.eep.flags} {compiler.objcopy.eep.extra_flags} "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.eep"
 recipe.objcopy.hex.pattern="{compiler.path}{compiler.elf2hex.cmd}" {compiler.elf2hex.flags} {compiler.elf2hex.extra_flags} "{build.path}/{build.project_name}.elf" "{build.path}/{build.project_name}.hex"
 recipe.output.save_file={build.project_name}.{build.mcu}_{build.f_cpu}.hex

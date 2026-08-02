@@ -201,6 +201,9 @@ reduceAVR系統は ブートローダーが支援されない。
 
 ## 更新履歴
 
+- 0.4.3 (26/07/30)
+  - AVRDUDEを`8.2-avrdude`に更新
+
 - 0.4.2 (26/07/20)
   - TPI系統全8品種対応。*ATTiny20/40は試験的*
   - reduceAVR糖衣構文全面改修。*開発継続中*
@@ -213,7 +216,6 @@ reduceAVR系統は ブートローダーが支援されない。
   - AVRDUDEを`8.1-avrdude`に変更
     - [avrdudesの公開版](https://github.com/avrdudes/avrdude/releases)を直接利用する
     - Apple社のライセンス制限に基づき、Apple Silicon 用 amr64-darwin 版は存在せず、Rosetta 2 トランスレータを使用する。必要なら MacPorts や Homebrew から入手した実行ファイルと手動で置換する必要がある。
-
 
 - 0.3.0 (24/11/06)
   - AVRDUDEを`8.0-arduino.1`に更新。
