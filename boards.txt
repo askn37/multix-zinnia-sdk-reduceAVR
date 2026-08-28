@@ -8,6 +8,21 @@ menu.54_led_select=UART and LED/SW
 
 
 01_ATtiny10.name=ATtiny4/5/9/10 (6pin)
+01_ATtiny10.build.board=AVR_ATTINY10
+02_ATtiny20.name=ATtiny20 (14pin with I2C Slave, SPI)
+02_ATtiny20.build.board=AVR_ATTINY20
+03_ATtiny40.name=ATtiny40 (20pin with I2C Sleve, SPI)
+03_ATtiny40.build.board=AVR_ATTINY40
+04_ATtiny104.name=ATtiny102/104 (with UART)
+04_ATtiny104.build.board=AVR_ATTINY104
+
+
+01_ATtiny10.programmer.default=21_pickit4_updi
+02_ATtiny20.programmer.default=21_pickit4_updi
+03_ATtiny40.programmer.default=21_pickit4_updi
+04_ATtiny104.programmer.default=25_xplainedmini_tpi
+
+
 01_ATtiny10.upload.maximum_data_size=32
 01_ATtiny10.upload.maximum_size=1024
 01_ATtiny10.upload.tool=
@@ -16,7 +31,6 @@ menu.54_led_select=UART and LED/SW
 01_ATtiny10.bootloader.reset_bit=1
 01_ATtiny10.bootloader.tool=avrdude
 01_ATtiny10.build.buildopt=-DNDEBUG
-01_ATtiny10.build.board=AVR_ATTINY10
 01_ATtiny10.build.compat=
 01_ATtiny10.build.core=reduceAVR
 01_ATtiny10.build.extra_flags={build.buildopt} {build.led_pin} {build.macroapi}
@@ -85,7 +99,6 @@ menu.54_led_select=UART and LED/SW
 01_ATtiny10.menu.54_led_select.03_PB0=LED=PB0 1:TDAT/OC0A
 
 
-02_ATtiny20.name=ATtiny20 (14pin with I2C Slave, SPI)
 02_ATtiny20.upload.maximum_data_size=128
 02_ATtiny20.upload.maximum_size=2048
 02_ATtiny20.upload.tool=
@@ -94,7 +107,6 @@ menu.54_led_select=UART and LED/SW
 02_ATtiny20.bootloader.reset_bit=1
 02_ATtiny20.bootloader.tool=avrdude
 02_ATtiny20.build.buildopt=-DNDEBUG
-02_ATtiny20.build.board=AVR_ATTINY40
 02_ATtiny20.build.compat=
 02_ATtiny20.build.core=reduceAVR
 02_ATtiny20.build.extra_flags={build.buildopt} {build.led_pin} {build.macroapi}
@@ -141,7 +153,6 @@ menu.54_led_select=UART and LED/SW
 02_ATtiny20.menu.54_led_select.01_PC0=LED=PA7 SW=PB2
 
 
-03_ATtiny40.name=ATtiny40 (20pin with I2C Sleve, SPI)
 03_ATtiny40.upload.maximum_data_size=256
 03_ATtiny40.upload.maximum_size=4096
 03_ATtiny40.upload.tool=
@@ -150,7 +161,6 @@ menu.54_led_select=UART and LED/SW
 03_ATtiny40.bootloader.reset_bit=1
 03_ATtiny40.bootloader.tool=avrdude
 03_ATtiny40.build.buildopt=-DNDEBUG
-03_ATtiny40.build.board=AVR_ATTINY40
 03_ATtiny40.build.compat=
 03_ATtiny40.build.core=reduceAVR
 03_ATtiny40.build.extra_flags={build.buildopt} {build.led_pin} {build.macroapi}
@@ -197,7 +207,6 @@ menu.54_led_select=UART and LED/SW
 03_ATtiny40.menu.54_led_select.01_PC0=LED=PC0 SW=PC2
 
 
-04_ATtiny104.name=ATtiny102/104 (with UART)
 04_ATtiny104.upload.maximum_data_size=32
 04_ATtiny104.upload.maximum_size=1024
 04_ATtiny104.upload.tool=
@@ -206,7 +215,6 @@ menu.54_led_select=UART and LED/SW
 04_ATtiny104.bootloader.reset_bit=1
 04_ATtiny104.bootloader.tool=avrdude
 04_ATtiny104.build.buildopt=-DNDEBUG
-04_ATtiny104.build.board=AVR_ATTINY104
 04_ATtiny104.build.compat=
 04_ATtiny104.build.core=reduceAVR
 04_ATtiny104.build.extra_flags={build.buildopt} {build.led_pin} {build.macroapi}
