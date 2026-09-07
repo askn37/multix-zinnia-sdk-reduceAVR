@@ -11,13 +11,14 @@
 /* MIT License : https://askn37.github.io/LICENSE.html */
 
 #pragma once
+#include "variant_io.h"
 
 #define ENABLE_MACRO_DIGITAL 1
 
 /* MACRO API */
 
-#ifndef __CONCAT
-#define __CONCAT(A,B) A##B
+#ifndef __CONCAT2
+#define __CONCAT2(A,B) A##B
 #endif
 
 #ifndef __CONCAT3
@@ -154,5 +155,42 @@
 #define VPORTCHG__
 #define VPORTCHG__251
 #define VPORTCHG_255_251
+
+/*
+ * pinPosition(PIN) macro
+ */
+#define pinPosition(PIN) (PIN & 7)
+
+/*
+ * pinBitmask(PIN) macro
+ */
+#define pinBitmask(PIN) (1 << (PIN & 7))
+
+/*
+ * vportRegister(PIN) macro
+ */
+#define portRegister(PIN) __CONCAT3(VPORTREG_,PIN,_)
+#define vportRegister(PIN) __CONCAT3(VPORTREG_,PIN,_)
+
+#define VPORTREG_224_ VPORTB
+#define VPORTREG_225_ VPORTB
+#define VPORTREG_226_ VPORTB
+#define VPORTREG_227_ VPORTB
+
+#define VPORTREG__
+#define VPORTREG_255_
+
+/*
+ * portIntrruptVector(PIN) macro
+ */
+#define portIntrruptVector(PIN) __CONCAT3(PORTVECT_,PIN,_)
+
+#define PORTVECT_224_ PCINT0_vect
+#define PORTVECT_225_ PCINT0_vect
+#define PORTVECT_226_ PCINT0_vect
+#define PORTVECT_227_ PCINT0_vect
+
+#define PORTVECT__
+#define PORTVECT_255_
 
 // end of code

@@ -82,7 +82,7 @@
 #define HAVE_ADC0         ADC_vect_num
 #endif
 #define HAVE_INT0         INT0_vect_num
-#define HAVE_PORTA        PCINT0_vect_num
+#define HAVE_PORTB        PCINT0_vect_num
 #define HAVE_TCB0         TIM0_CAPT_vect_num
 #define HAVE_VLM          VLM_vect_num
 #define HAVE_WDT          WDT_vect_num

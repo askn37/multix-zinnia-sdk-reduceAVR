@@ -21,7 +21,6 @@
  * 
  * The following declarations derived from io.h will be renamed.
  */
-#undef PORTB    /* -> POTB */
 #undef ADC0     /* -> ADCL0 */
 
 /* Registers and associated bit numbers. */
@@ -756,7 +755,7 @@ typedef enum WDT_PERIOD_enum
 IO Module Instances. Mapped to memory.
 ==========================================================================
 */
-#define PORTB                          (*(PORT_t *) 0x00) /* Alias PORTB */
+#define VPORTB                         (*(PORT_t *) 0x00) /* Alias PORTB */
 #define PORTCTRL                   (*(PORTCTRL_t *) 0x0C) /* Alias PORTCR */
 #define PCINT                         (*(PCINT_t *) 0x10) /* Alias PCMSK0 */
 #define EXTINT                       (*(EXTINT_t *) 0x13) /* Alias EIMSK */
@@ -818,7 +817,6 @@ IO Module Instances. Mapped to memory.
 #define PORTB_IN                    _SFR_IO8(0x00)  /* PINB */
 #define PORTB_DIR                   _SFR_IO8(0x01)  /* DDRB */
 #define PORTB_OUT                   _SFR_IO8(0x02)  /* PORTB */
-#define POTB                        _SFR_IO8(0x02)  /* alias legacy PORTB */
 #define PORTB_PUE                   _SFR_IO8(0x03)  /* PUEB */
 
 /* PORTCTRL - I/O Ports Control */
@@ -857,6 +855,12 @@ IO Module Instances. Mapped to memory.
 /* VLM - VCC Monitoring Control */
 #define VLM_CTRLA                   _SFR_IO8(0x34)  /* VLMCSR */
 
+/* VPORTB - I/O Ports */
+#define VPORTB_IN                   _SFR_IO8(0x04)  /* PINB */
+#define VPORTB_DIR                  _SFR_IO8(0x05)  /* DDRB */
+#define VPORTB_OUT                  _SFR_IO8(0x06)  /* PORTB */
+#define VPORTB_PUE                  _SFR_IO8(0x07)  /* PUEB */
+
 /* WDT - Watchdog Timer Contorol */
 #define WDT_CTRLA                   _SFR_IO8(0x31)  /* WDTCSR */
 
@@ -880,6 +884,8 @@ IO Module Instances. Mapped to memory.
 #define PIN7_bp 7
 
 /* ========== Interrupt Vector Definitions ========== */
+#define PORTB_PORT_vect         PCINT0_vect
+#define PORTB_PORT_vect_num     PCINT0_vect_num
 #define TCB0_CAPT_vect          TIM0_CAPT_vect
 #define TCB0_CAPT_vect_num      TIM0_CAPT_vect_num
 #define TCB0_OVF_vect           TIM0_OVF_vect

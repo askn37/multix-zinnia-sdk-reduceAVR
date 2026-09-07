@@ -976,8 +976,8 @@ typedef enum WDT_PERIOD_enum
 IO Module Instances. Mapped to memory.
 ==========================================================================
 */
-#define PORTA                          (*(PORT_t *) 0x00) /* Alias PORTA */
-#define PORTB                          (*(PORT_t *) 0x04) /* Alias PORTB */
+#define VPORTA                         (*(PORT_t *) 0x00) /* Alias PINA */
+#define VPORTB                         (*(PORT_t *) 0x04) /* Alias PINB */
 #define USERT0                        (*(USART_t *) 0x08) /* Alias UDR */
 #define PORTCTRL                   (*(PORTCTRL_t *) 0x0C) /* Alias PORTCR */
 #define PCINT                         (*(PCINT_t *) 0x0F) /* Alias PCMSK0 */
@@ -1041,14 +1041,12 @@ IO Module Instances. Mapped to memory.
 #define PORTA_IN                    _SFR_IO8(0x00)  /* PINB */
 #define PORTA_DIR                   _SFR_IO8(0x01)  /* DDRB */
 #define PORTA_OUT                   _SFR_IO8(0x02)  /* PORTB */
-#define POTA                        _SFR_IO8(0x02)  /* alias legacy PORTB */
 #define PORTA_PUE                   _SFR_IO8(0x03)  /* PUEB */
 
 /* PORTB - I/O Ports */
 #define PORTB_IN                    _SFR_IO8(0x04)  /* PINB */
 #define PORTB_DIR                   _SFR_IO8(0x05)  /* DDRB */
 #define PORTB_OUT                   _SFR_IO8(0x06)  /* PORTB */
-#define POTB                        _SFR_IO8(0x06)  /* alias legacy PORTB */
 #define PORTB_PUE                   _SFR_IO8(0x07)  /* PUEB */
 
 /* PORTCTRL - I/O Ports Control */
@@ -1100,6 +1098,18 @@ IO Module Instances. Mapped to memory.
 
 /* VLM - VCC Monitoring Control */
 #define VLM_CTRLA                   _SFR_IO8(0x34)  /* VLMCSR */
+
+/* VPORTA - I/O Ports */
+#define VPORTA_IN                   _SFR_IO8(0x00)  /* PINB */
+#define VPORTA_DIR                  _SFR_IO8(0x01)  /* DDRB */
+#define VPORTA_OUT                  _SFR_IO8(0x02)  /* PORTB */
+#define VPORTA_PUE                  _SFR_IO8(0x03)  /* PUEB */
+
+/* VPORTB - I/O Ports */
+#define VPORTB_IN                   _SFR_IO8(0x04)  /* PINB */
+#define VPORTB_DIR                  _SFR_IO8(0x05)  /* DDRB */
+#define VPORTB_OUT                  _SFR_IO8(0x06)  /* PORTB */
+#define VPORTB_PUE                  _SFR_IO8(0x07)  /* PUEB */
 
 /* WDT - Watchdog Timer Contorol */
 #define WDT_CTRLA                   _SFR_IO8(0x31)  /* WDTCSR */
