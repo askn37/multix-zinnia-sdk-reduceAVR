@@ -409,11 +409,11 @@ typedef volatile unsigned short register16_t;
 #define TCB_CAP_bm              (1<<ICIE0)      /* Input Capture Interrupt Enable bit mask. */
 #define TCB_CAP_bp              ICIE0           /* Input Capture Interrupt Enable bit position. */
 
-/* TCA0.INTFLAGS [TIFR0] bit masks and bit positions */
-/* TCA_OVF [TOV0] is already defined. */
-/* TCA_CMPA [OCF0A] is already defined. */
-/* TCA_CMPB [OCF0B] is already defined. */
-/* TCA_CAP [ICF0] is already defined. */
+/* TCB0.INTFLAGS [TIFR0] bit masks and bit positions */
+/* TCB_OVF [TOV0] is already defined. */
+/* TCB_CCMPA [OCF0A] is already defined. */
+/* TCB_CCMPB [OCF0B] is already defined. */
+/* TCB_CAP [ICF0] is already defined. */
 
 
 /* TCB0.CTRLD [GTCCR] bit masks and bit positions */
@@ -621,9 +621,9 @@ typedef enum ADC_ATS_enum
     ADC_ATMODE_FREERUN_gc       = (0<<ADTS0),   /* Free Running mode */
     ADC_ATMODE_AC0_OUT_gc       = (1<<ADTS0),   /* Analog Comparator OUT */
     ADC_ATMODE_EXTINT_gc        = (2<<ADTS0),   /* External Interrupt Request */
-    ADC_ATMODE_TCB0_CMPA_gc     = (3<<ADTS0),   /* Timer/Counter 0 Compare Match A */
+    ADC_ATMODE_TCB0_CCMPA_gc    = (3<<ADTS0),   /* Timer/Counter 0 Compare Match A */
     ADC_ATMODE_TCB0_OVF_gc      = (4<<ADTS0),   /* Timer/Counter 0 Overflow */
-    ADC_ATMODE_TCB0_CMPB_gc     = (5<<ADTS0),   /* Timer/Counter 0 Compare Match B */
+    ADC_ATMODE_TCB0_CCMPB_gc    = (5<<ADTS0),   /* Timer/Counter 0 Compare Match B */
     ADC_ATMODE_PCINT_gc         = (6<<ADTS0),   /* Pin Change Interrupt Request */
     ADC_ATMODE_TCB0_CAPT_gc     = (7<<ADTS0)    /* Timer/Counter 0 Capture Event */
 } ADC_ATS_t;
@@ -799,8 +799,8 @@ TCB - Timer/Counter controller
 typedef struct TCB_struct
 {
     _WORDREGISTER(CAPT);        /* $22 ICR0   : Input Capture Register */
-    _WORDREGISTER(CMPB);        /* $24 OCR0B  : Output Compare Register B */
-    _WORDREGISTER(CMPA);        /* $26 OCR0A  : Output Compare Register A */
+    _WORDREGISTER(CCMPB);       /* $24 OCR0B  : Output Compare Register B */
+    _WORDREGISTER(CCMPA);       /* $26 OCR0A  : Output Compare Register A */
     _WORDREGISTER(CNT);         /* $28 TCNT0  : Count */
     register8_t INTFLAGS;       /* $2A TIFR0  : Interrupt Flag Register */
     register8_t INTCTRL;        /* $2B TIMSK0 : Interrupt Mask Register */
@@ -835,17 +835,17 @@ typedef enum TCB_WGMODE_enum
     TCB_WGMODE_PWM8_BTM_gc      = (0|1),        /* PWM, Phase Correct, 8-bit    0x00FF-TOP----BOTTOM */
     TCB_WGMODE_PWM9_BTM_gc      = (0|2),        /* PWM, Phase Correct, 9-bit    0x01FF-TOP----BOTTOM */
     TCB_WGMODE_PWM10_BTM_gc     = (0|3),        /* PWM, Phase Correct, 10-bit   0x03FF-TOP----BOTTOM */
-    TCB_WGMODE_CTC_CMPA_gc      = (8|0),        /* CTC (Clear Timer on Compare) OCR0A--Imd----MAX */
+    TCB_WGMODE_CTC_CCMPA_gc     = (8|0),        /* CTC (Clear Timer on Compare) OCR0A--Imd----MAX */
     TCB_WGMODE_PWM8_TOP_gc      = (8|1),        /* Fast PWM, 8-bit              0x00FF-TOP----TOP */
     TCB_WGMODE_PWM9_TOP_gc      = (8|2),        /* Fast PWM, 9-bit              0x01FF-TOP----TOP */
     TCB_WGMODE_PWM10_TOP_gc     = (8|3),        /* Fast PWM, 10-bit             0x03FF-TOP----TOP */
     TCB_WGMODE_PWFQ_CAPT_gc     = (16|0),       /* PWM, Phase & Freq. Correct   ICR0---BOTTOM-BOTTOM */
-    TCB_WGMODE_PWFQ_CMPA_gc     = (16|1),       /* PWM, Phase & Freq. Correct   OCR0A--BOTTOM-BOTTOM */
+    TCB_WGMODE_PWFQ_CCMPA_gc    = (16|1),       /* PWM, Phase & Freq. Correct   OCR0A--BOTTOM-BOTTOM */
     TCB_WGMODE_PWPH_CAPT_gc     = (16|2),       /* PWM, Phase Correct           ICR0---TOP----BOTTOM */
-    TCB_WGMODE_PWPH_CMPA_gc     = (16|3),       /* PWM, Phase Correct           OCR0A--TOP----BOTOM */
+    TCB_WGMODE_PWPH_CCMPA_gc    = (16|3),       /* PWM, Phase Correct           OCR0A--TOP----BOTOM */
     TCB_WGMODE_CTC_CAPT_gc      = (24|0),       /* CTC (Clear Timer on Compare) ICR0---Imd----MAX */
     TCB_WGMODE_PWM_CAPT_gc      = (24|2),       /* Fast PWM                     ICR0---TOP----TOP */
-    TCB_WGMODE_PWM_CMPA_gc      = (24|3)        /* Fast PWM                     OCR0A--TOP----TOP */
+    TCB_WGMODE_PWM_CCMPA_gc     = (24|3)        /* Fast PWM                     OCR0A--TOP----TOP */
 } TCB_WGMODE_t;
 
 /* Clock Select */
@@ -876,8 +876,14 @@ typedef struct USART_struct
     _WORDREGISTER(BAUD);        /* $09 UBRR  : Baud Rate Register */
     register8_t CTRLD;          /* $0B UCSRD : Control and Status Register D */
     register8_t CTRLC;          /* $0C UCSRC : Control and Status Register C */
+  union {
     register8_t CTRLB;          /* $0C UCSRB : Control and Status Register B */
+    register8_t INTCTRL;        /* Alias */
+  };
+  union {
     register8_t CTRLA;          /* $0C UCSRA : Control and Status Register A */
+    register8_t STATUS;         /* Alias */
+  };
 } USART_t;
 
 /* Character Size select bit group configurations*/
@@ -888,7 +894,7 @@ typedef enum USART_CHSIZE_enum
     USART_CHSIZE_6BIT_gc        = (1<<UCSZ0),   /* Character size: 6 bit */
     USART_CHSIZE_7BIT_gc        = (2<<UCSZ0),   /* Character size: 7 bit */
     USART_CHSIZE_8BIT_gc        = (3<<UCSZ0),   /* Character size: 8 bit */
-    USART_CHSIZE_9BIT_gc        = (2<<UCSZ0)    /* Character size: 9 bit */
+    USART_CHSIZE_9BIT_gc        = (3<<UCSZ0)    /* Character size: 9 bit */
 } USART_CHSIZE_t;
 
 /* Communication Mode select bit group configurations*/
@@ -1059,16 +1065,16 @@ IO Module Instances. Mapped to memory.
 /* TCB0 - 16-bit Timer/Counter 0 Control */
 #if !defined (__ASSEMBLER__)
 #define TCB0_CAPT                   _SFR_IO16(0x22) /* ICR0 */
-#define TCB0_CMPB                   _SFR_IO16(0x24) /* OCR0B */
-#define TCB0_CMPA                   _SFR_IO16(0x26) /* OCR0A */
+#define TCB0_CCMPB                  _SFR_IO16(0x24) /* OCR0B */
+#define TCB0_CCMPA                  _SFR_IO16(0x26) /* OCR0A */
 #define TCB0_CNT                    _SFR_IO16(0x28) /* TCNT0 */
 #endif
 #define TCB0_CAPTL                  _SFR_IO8(0x22)  /* ICR0L */
 #define TCB0_CAPTH                  _SFR_IO8(0x23)  /* ICR0H */
-#define TCB0_CMPBL                  _SFR_IO8(0x24)  /* OCR0BL */
-#define TCB0_CMPBH                  _SFR_IO8(0x25)  /* OCR0BH */
-#define TCB0_CMPAL                  _SFR_IO8(0x26)  /* OCR0AL */
-#define TCB0_CMPAH                  _SFR_IO8(0x27)  /* OCR0BH */
+#define TCB0_CCMPBL                 _SFR_IO8(0x24)  /* OCR0BL */
+#define TCB0_CCMPBH                 _SFR_IO8(0x25)  /* OCR0BH */
+#define TCB0_CCMPAL                 _SFR_IO8(0x26)  /* OCR0AL */
+#define TCB0_CCMPAH                 _SFR_IO8(0x27)  /* OCR0BH */
 #define TCB0_CNTL                   _SFR_IO8(0x28)  /* TCNT0L */
 #define TCB0_CNTH                   _SFR_IO8(0x29)  /* TCNT0H */
 #define TCB0_INTFLAGS               _SFR_IO8(0x2A)  /* TIFR0 */
@@ -1088,7 +1094,9 @@ IO Module Instances. Mapped to memory.
 #define USART0_CTRLD                _SFR_IO8(0x0B)  /* UCSRD */
 #define USART0_CTRLC                _SFR_IO8(0x0C)  /* UCSRC */
 #define USART0_CTRLB                _SFR_IO8(0x0D)  /* UCSRB */
+#define USART0_INTCTRL              _SFR_IO8(0x0D)  /* Alias */
 #define USART0_CTRLA                _SFR_IO8(0x0E)  /* UCSRA */
+#define USART0_STATUS               _SFR_IO8(0x0E)  /* Alias */
 
 /* VLM - VCC Monitoring Control */
 #define VLM_CTRLA                   _SFR_IO8(0x34)  /* VLMCSR */
@@ -1124,10 +1132,10 @@ IO Module Instances. Mapped to memory.
 #define TCB0_CAPT_vect_num      TIM0_CAPT_vect_num
 #define TCB0_OVF_vect           TIM0_OVF_vect
 #define TCB0_OVF_vect_num       TIM0_OVF_vect_num
-#define TCB0_CMPA_vect          TIM0_COMPA_vect
-#define TCB0_CMPA_vect_num      TIM0_COMPA_vect_num
-#define TCB0_CMPB_vect          TIM0_COMPB_vect
-#define TCB0_CMPB_vect_num      TIM0_COMPB_vect_num
+#define TCB0_CCMPA_vect         TIM0_COMPA_vect
+#define TCB0_CCMPA_vect_num     TIM0_COMPA_vect_num
+#define TCB0_CCMPB_vect         TIM0_COMPB_vect
+#define TCB0_CCMPB_vect_num     TIM0_COMPB_vect_num
 #define AC0_CMP_vect            ANA_COMP_vect
 #define AC0_CMP_vect_num        ANA_COMP_vect_num
 #define ADC0_vect               ADC_vect

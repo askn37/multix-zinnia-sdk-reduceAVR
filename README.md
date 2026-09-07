@@ -129,6 +129,9 @@ Arduino IDE でこのSDKを選択すると、
   - WDT用副発振器による 125kHz〜500Hz
 - __FUSE RSTCFG__ -- リセットピン用途変更（FUSE設定）
   - __原則、既定値からの変更禁止（復元にはHV対応書換器が必須）__
+- __FUSE define__ -- FUSE全体の扱い
+  - Specify in the MENU -- メニュー設定に従う
+  - Upload ".fuse" file (Use with caution) -- FUSEファイルでの書換有効：要注意の操作
 - __Build Option__ -- DEBUGマクロ有無（任意選択）
   - Build Release -- 既定値（NDEBUG設定）
   - Build DEBUG=1
@@ -184,13 +187,14 @@ Arduino IDE のシリアルコンソールを閉じる必要はない。
 
 reduceAVR系統では任意の Clock 選択が有効となる。
 
-### ビルド出力確認 `Ctrl+Alt+S` `⌘+Alt+S`
+### ビルド出力確認 `Ctrl+Alt+S` `⌘+⌥+S`
 
 （書込み可能な場合の）スケッチフォルダに、
 スケッチがビルドされた HEX ファイル、
 ブートローダーも一体に結合された HEX ファイル、
 逆アセンブルコードリスト、
-EEPROM 初期化用 HEX ファイル
+ユーザー定義 EEPROM 初期化用 HEX ファイル
+ユーザー定義 FUSE 初期化用 HEX ファイル
 が出力される。
 
 > スケッチがビルドエラーになる場合は何も出力されない。
@@ -202,6 +206,12 @@ reduceAVR系統は ブートローダーが支援されない。
 ## 更新履歴
 
 \* 既に既知の対象全品種に対応済なので`atpack`と共通submodule以外の火急の更新予定はない。
+
+- 0.4.9 (26/09/07)
+  - `variants`の総括的アップデート
+  - `.fuse`セクション対応のリンカスクリプト`avrtiny.x`を新設・適用
+  - `boards.txt`と`platform.txt`の修正と、`.fuse`ファイルの生成とアップロードに対応
+  - `TinyUART.h`と対応実演サンプルを追加
 
 - 0.4.7 (26/08/20)
   - `boards.txt` の若干の修正

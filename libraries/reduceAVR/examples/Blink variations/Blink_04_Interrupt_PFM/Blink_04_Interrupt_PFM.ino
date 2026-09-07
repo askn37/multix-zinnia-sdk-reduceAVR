@@ -22,26 +22,26 @@ volatile bool cmp_init = true;
 void setup (void) {
   pinModeMacro(LED_BUILTIN, OUTPUT);
 
-  TCB0_INTCTRL = TCB_CMPA_bm;
-  TCB0_CTRLA = (TCB_WGMODE_CTC_CMPA_gc & TCB_WGMODE_A_gm);
-  TCB0_CTRLB = (TCB_WGMODE_CTC_CMPA_gc & TCB_WGMODE_B_gm) | TCB_CLKSEL_CLKDIV64_gc;
+  TCB0_INTCTRL = TCB_CCMPA_bm;
+  TCB0_CTRLA = (TCB_WGMODE_CTC_CCMPA_gc & TCB_WGMODE_A_gm);
+  TCB0_CTRLB = (TCB_WGMODE_CTC_CCMPA_gc & TCB_WGMODE_B_gm) | TCB_CLKSEL_CLKDIV64_gc;
 
   _PROTECTED_WRITE(WDT_CTRLA, WDT_IE_bm | WDT_PERIOD_2CLK_gc);
   set_sleep_mode(SLEEP_MODE_IDLE);
   sleep_enable();
 }
 
-ISR(TCB0_CMPA_vect) {
+ISR(TCB0_CCMPA_vect) {
   digitalWriteMacro(LED_BUILTIN, TOGGLE);
   if (cmp_init) {
     cmp_init = false;
     uint16_t _temp = TCB0_CNT;
     _temp -= _temp >> 6;
-    TCB0_CMPA = _temp;
+    TCB0_CCMPA = _temp;
   }
 }
 
-ISR_ALIAS(WDT_vect, TCB0_CMPA_vect);
+ISR_ALIAS(WDT_vect, TCB0_CCMPA_vect);
 
 void loop (void) {
   sleep_cpu();

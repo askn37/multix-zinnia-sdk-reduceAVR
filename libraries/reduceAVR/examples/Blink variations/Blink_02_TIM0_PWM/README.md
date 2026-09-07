@@ -28,9 +28,9 @@
 void setup (void) {
   pinModeMacro(PIN_TCB0_WOB, OUTPUT);
 
-  TCB0_CMPA = F_CPU / 1024 - 1;
-  TCB0_CTRLA = (TCB_WGMODE_CTC_CMPA_gc & TCB_WGMODE_A_gm) | TCB_CMPB_TOGGLE_gc;
-  TCB0_CTRLB = (TCB_WGMODE_CTC_CMPA_gc & TCB_WGMODE_B_gm) | TCB_CLKSEL_CLKDIV1024_gc;
+  TCB0_CCMPA = F_CPU / 1024 - 1;
+  TCB0_CTRLA = (TCB_WGMODE_CTC_CCMPA_gc & TCB_WGMODE_A_gm) | TCB_WOB_TOGGLE_gc;
+  TCB0_CTRLB = (TCB_WGMODE_CTC_CCMPA_gc & TCB_WGMODE_B_gm) | TCB_CLKSEL_CLKDIV1024_gc;
 
   set_sleep_mode(SLEEP_MODE_IDLE);
   sleep_enable();
@@ -71,20 +71,20 @@ void loop (void) {
 + pinModeMacro(PIN_TCB0_WOB, OUTPUT);
 
 - OCR0A = F_CPU / 1024 - 1;
-+ TCB0_CMPA = F_CPU / 1024 - 1;
++ TCB0_CCMPA = F_CPU / 1024 - 1;
 
 - TCCR0A = /* _BV(WGM01) | */ /* _BV(WGM00) | */ _BV(COM0B0);
-+ TCB0_CTRLA = (TCB_WGMODE_CTC_CMPA_gc & TCB_WGMODE_LOW_gm)  | TCB_WOB_TOGGLE_gc;
++ TCB0_CTRLA = (TCB_WGMODE_CTC_CCMPA_gc & TCB_WGMODE_LOW_gm)  | TCB_WOB_TOGGLE_gc;
 
 - TCCR0B = /* _BV(WGM03) | */ _BV(WGM02) | _BV(CS02) | /* _BV(CS01) | */ _BV(CS00);
-+ TCB0_CTRLB = (TCB_WGMODE_CTC_CMPA_gc & TCB_WGMODE_HIGH_gm) | TCB_CLKSEL_CLKDIV1024_gc;
++ TCB0_CTRLB = (TCB_WGMODE_CTC_CCMPA_gc & TCB_WGMODE_HIGH_gm) | TCB_CLKSEL_CLKDIV1024_gc;
 ```
 
 タイマーの出力波形設定`WGMODE`ビット群はふたつの設定レジスタに分割して記述するため、`<avr/io.h>`構文では設定変更の際の個別ビットのコメントイン／アウトも煩雑だ。糖衣構文ではこれを機能名で表す定数とANDマスクの組に置き換えることができる。
 
-ここで`WGMODE`は`CTC_CMPA`つまり「`CNT`値は`CMPA`値と一致するまでカウントし、のちゼロクリア(CTC)されて再カウント継続」モードを選択した。その比較一致が成立するのと同期して`WOB`出力をトグル反転させたいので`WOB_TOGGLE`定数を設定する。
+ここで`WGMODE`は`CTC_CCMPA`つまり「`CNT`値は`CCMPA`値と一致するまでカウントし、のちゼロクリア(CTC)されて再カウント継続」モードを選択した。その比較一致が成立するのと同期して`WOB`出力をトグル反転させたいので`WOB_TOGGLE`定数を設定する。
 
-タイマーの分解能（主クロック`F_CPU`に対する分周比）は`CLKSEL_CLKDIV*`定数で与えられる。ここでは`1/1024`を選択した。よってカウント比較レジスタ`CMPA`には`F_CPU/1024-1`をセットする。これにより1秒に1回の比較割込要求要件を満たす。
+タイマーの分解能（主クロック`F_CPU`に対する分周比）は`CLKSEL_CLKDIV*`定数で与えられる。ここでは`1/1024`を選択した。よってカウント比較レジスタ`CCMPA`には`F_CPU/1024-1`をセットする。これにより1秒に1回の比較割込要求要件を満たす。
 
 以上で動作を始めた`TCB0`計数器はもはや MPUの走行に依存せず自律的に動作するため、最後では必要なくなった MPU動作を`IDLE`休止状態（`STANDBY`でも`PWR_DOWN`でもない）として休眠させている。
 

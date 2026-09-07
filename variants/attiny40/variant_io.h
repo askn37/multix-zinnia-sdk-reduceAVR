@@ -492,17 +492,17 @@ typedef volatile unsigned short register16_t;
 /* TCC0.INTCTRL [TIMSK] bit masks and bit positions */
 #define TCC_OVF_bm              (1<<TOIE1)      /* Overflow Flag bit mask. */
 #define TCC_OVF_bp              TOIE1           /* Overflow Flag bit positon. */
-#define TCC_CMPA_bm             (1<<OCIE1A)     /* Output Compare A Match Flag bit mask. */
-#define TCC_CMPA_bp             OCIE1A          /* Output Compare A Match Flag bit positon. */
-#define TCC_CMPB_bm             (1<<OCIE1B)     /* Output Compare B Match Flag bit mask. */
-#define TCC_CMPB_bp             OCIE1B          /* Output Compare B Match Flag bit positon. */
+#define TCC_CCMPA_bm            (1<<OCIE1A)     /* Output Compare A Match Flag bit mask. */
+#define TCC_CCMPA_bp            OCIE1A          /* Output Compare A Match Flag bit positon. */
+#define TCC_CCMPB_bm            (1<<OCIE1B)     /* Output Compare B Match Flag bit mask. */
+#define TCC_CCMPB_bp            OCIE1B          /* Output Compare B Match Flag bit positon. */
 #define TCC_CAP_bm              (1<<ICIE1)      /* Input Capture Flag bit mask. */
 #define TCC_CAP_bp              ICIE1           /* Input Capture Flag bit positon. */
 
 /* TCC0.INTFLAGS [TIFR] bit masks and bit positions */
 /* TCC_OVF [TOV1] is already defined. */
-/* TCC_CMPA [OCF1A] is already defined. */
-/* TCC_CMPB [OCF1B] is already defined. */
+/* TCC_CCMPA [OCF1A] is already defined. */
+/* TCC_CCMPB [OCF1B] is already defined. */
 /* TCC_CAP [ICF1] is already defined. */
 
 /* TWI0.SCTRLA [TWSCRA] bit masks and bit positions */
@@ -691,7 +691,7 @@ typedef enum ADC_ATS_enum
     ADC_ATMODE_EXTINT_gc        = (2<<ADTS0),   /* External Interrupt Request */
     ADC_ATMODE_TCA0_CMPA_gc     = (3<<ADTS0),   /* Timer/Counter 0 Compare Match A */
     ADC_ATMODE_TCA0_OVF_gc      = (4<<ADTS0),   /* Timer/Counter 0 Overflow */
-    ADC_ATMODE_TCC0_CMPB_gc     = (5<<ADTS0),   /* Timer/Counter 1 Compare Match B */
+    ADC_ATMODE_TCC0_CCMPB_gc    = (5<<ADTS0),   /* Timer/Counter 1 Compare Match B */
     ADC_ATMODE_TCC0_OVF_gc      = (6<<ADTS0),   /* Timer/Counter 1 Overflow */
     ADC_ATMODE_TCC0_CAPT_gc     = (7<<ADTS0)    /* Timer/Counter 1 Capture Event */
 } ADC_ATS_t;
@@ -970,8 +970,8 @@ typedef struct TCC_struct
 {
     register8_t CTRLB;          /* $18 TCCR0B : Control Register B */
     register8_t reserved[8];
-    register8_t CMPB;           /* $21 OCR1B  : Output Compare Register B */
-    register8_t CMPA;           /* $22 OCR1A  : Output Compare Register A */
+    register8_t CCMPB;          /* $21 OCR1B  : Output Compare Register B */
+    register8_t CCMPA;          /* $22 OCR1A  : Output Compare Register A */
     register8_t CNTL;           /* $23 TCNT0  : Count low */
     register8_t CTRLA;          /* $24 TCCR1A : Control Register A */
     register8_t INTFLAGS;       /* $25 TIFR   : Interrupt Flag Register */
@@ -983,9 +983,9 @@ typedef struct TCC_struct
 typedef enum TCC_WGMODE_enum
 {
     TCC_WGMODE_NORMAL8_gc       = (0|0|0),        /* Normal 8-bit Mode  $00FF--Imd--MAX */
-    TCC_WGMODE_CTC8_CMPA_gc     = (0|0|8),        /* CTC 8-bit          OCR1A--Imd--MAX */
+    TCC_WGMODE_CTC8_CCMPA_gc    = (0|0|8),        /* CTC 8-bit          OCR1A--Imd--MAX */
     TCC_WGMODE_NORMAL16_gc      = (0|128|0),      /* Normal 16-bit Mode $FFFF--Imd--MAX */
-    TCC_WGMODE_CTC16_CMPAB_gc   = (0|128|8),      /* CTC 16-bit         OCR1AB-Imd--MAX */
+    TCC_WGMODE_CTC16_CCMPAB_gc  = (0|128|8),      /* CTC 16-bit         OCR1AB-Imd--MAX */
     TCC_WGMODE_CAP8_gc          = (64|0|0),       /* Capture 8-bit      $00FF-------MAX */
     TCC_WGMODE_CAP16_gc         = (64|128|0)      /* Capture 16-bit     $FFFF-------MAX */
 } TCC_WGMODE_t;
@@ -1188,8 +1188,8 @@ IO Module Instances. Mapped to memory.
 
 /* TCC0 - 8-bit Timer/Counter 1 Control */
 #define TCC0_CTRLB                  _SFR_IO8(0x18)  /* TCCR0B */
-#define TCC0_CMPB                   _SFR_IO8(0x21)  /* OCR1B */
-#define TCC0_CMPA                   _SFR_IO8(0x22)  /* OCR1A */
+#define TCC0_CCMPB                  _SFR_IO8(0x21)  /* OCR1B */
+#define TCC0_CCMPA                  _SFR_IO8(0x22)  /* OCR1A */
 #define TCC0_CNTL                   _SFR_IO8(0x23)  /* TCNT1L */
 #define TCC0_CTRLA                  _SFR_IO8(0x24)  /* TCCR1A */
 #define TCC0_INTFLAGS               _SFR_IO8(0x25)  /* TIFR */
@@ -1233,10 +1233,10 @@ IO Module Instances. Mapped to memory.
 #define PORTB_PORT_vect_num     PCINT1_vect_num
 #define TCC0_CAPT_vect          TIM1_CAPT_vect
 #define TCC0_CAPT_vect_num      TIM1_CAPT_vect_num
-#define TCC0_CMPA_vect          TIM1_COMPA_vect
-#define TCC0_CMPA_vect_num      TIM1_COMPA_vect_num
-#define TCC0_CMPB_vect          TIM1_COMPB_vect
-#define TCC0_CMPB_vect_num      TIM1_COMPB_vect_num
+#define TCC0_CCMPA_vect         TIM1_COMPA_vect
+#define TCC0_CCMPA_vect_num     TIM1_COMPA_vect_num
+#define TCC0_CCMPB_vect         TIM1_COMPB_vect
+#define TCC0_CCMPB_vect_num     TIM1_COMPB_vect_num
 #define TCC0_OVF_vect           TIM1_OVF_vect
 #define TCC0_OVF_vect_num       TIM1_OVF_vect_num
 #define TCA0_CMPA_vect          TIM0_COMPA_vect

@@ -16,8 +16,8 @@
 
 /* MACRO API */
 
-#ifndef __CONCAT
-#define __CONCAT(A,B) A##B
+#ifndef __CONCAT2
+#define __CONCAT2(A,B) A##B
 #endif
 
 #ifndef __CONCAT3
@@ -162,25 +162,25 @@
 /*
  * digitalReadMacro(PIN) macro
  */
-#define digitalReadMacro(PIN) __CONCAT(VPORTIN_,PIN)
+#define digitalReadMacro(PIN) __CONCAT3(VPORTIN_,PIN,_)
 
 // digitalReadMacro(PIN) -> VPORTx.IN & PINn_bm; } while (0)
-#define VPORTIN_192 (PINA & 1)
-#define VPORTIN_193 (PINA & 2)
-#define VPORTIN_194 (PINA & 4)
-#define VPORTIN_195 (PINA & 8)
-#define VPORTIN_196 (PINA & 16)
-#define VPORTIN_197 (PINA & 32)
-#define VPORTIN_198 (PINA & 64)
-#define VPORTIN_199 (PINA & 128)
+#define VPORTIN_192_ (bit_is_set(PINA,PINA0))
+#define VPORTIN_193_ (bit_is_set(PINA,PINA1))
+#define VPORTIN_194_ (bit_is_set(PINA,PINA2))
+#define VPORTIN_195_ (bit_is_set(PINA,PINA3))
+#define VPORTIN_196_ (bit_is_set(PINA,PINA4))
+#define VPORTIN_197_ (bit_is_set(PINA,PINA5))
+#define VPORTIN_198_ (bit_is_set(PINA,PINA6))
+#define VPORTIN_199_ (bit_is_set(PINA,PINA7))
 
-#define VPORTIN_224 (PINB & 1)
-#define VPORTIN_225 (PINB & 2)
-#define VPORTIN_226 (PINB & 4)
-#define VPORTIN_227 (PINB & 8)
+#define VPORTIN_224_ (bit_is_set(PINB,PINB0))
+#define VPORTIN_225_ (bit_is_set(PINB,PINB1))
+#define VPORTIN_226_ (bit_is_set(PINB,PINB2))
+#define VPORTIN_227_ (bit_is_set(PINB,PINB3))
 
-#define VPORTIN_
-#define VPORTIN_255
+#define VPORTIN__
+#define VPORTIN_255_
 
 /*
  * openDrainWriteMacro(PIN,LOW|HIGH|TOGGLE) macro

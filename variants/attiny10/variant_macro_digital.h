@@ -108,16 +108,16 @@
 /*
  * digitalReadMacro(PIN) macro
  */
-#define digitalReadMacro(PIN) __CONCAT(VPORTIN_,PIN)
+#define digitalReadMacro(PIN) __CONCAT3(VPORTIN_,PIN,_)
 
 // digitalReadMacro(PIN) -> VPORTx.IN & PINn_bm; } while (0)
-#define VPORTIN_224 (PINB & 1)
-#define VPORTIN_225 (PINB & 2)
-#define VPORTIN_226 (PINB & 4)
-#define VPORTIN_227 (PINB & 8)
+#define VPORTIN_224_ (bit_is_set(PINB,PINB0))
+#define VPORTIN_225_ (bit_is_set(PINB,PINB1))
+#define VPORTIN_226_ (bit_is_set(PINB,PINB2))
+#define VPORTIN_227_ (bit_is_set(PINB,PINB3))
 
-#define VPORTIN_
-#define VPORTIN_255
+#define VPORTIN__
+#define VPORTIN_255_
 
 /*
  * openDrainWriteMacro(PIN,LOW|HIGH|TOGGLE) macro

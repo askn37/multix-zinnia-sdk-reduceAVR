@@ -43,12 +43,12 @@
 #define PIN_RST     PIN_PB3
 
 #ifndef LED_BUILTIN
-#define LED_BUILTIN PIN_PA7   /* PWM Channel OC0A Pin */
+#define LED_BUILTIN PIN_PA7
 #endif
-/* #define LED_BUILTIN_INVERT */ /* implementation dependent */
+/* #define LED_BUILTIN_INVERT */
 
-#ifndef SW_BUILTIN
-#define SW_BUILTIN  PIN_PB2
+#ifndef SW_BUILTIN  /* INT0 */
+#define SW_BUILTIN  PIN_PA0
 #endif
 
 /* peripheral ports */

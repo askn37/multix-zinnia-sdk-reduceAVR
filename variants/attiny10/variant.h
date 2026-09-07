@@ -34,9 +34,9 @@
 #define PIN_RST     PIN_PB3
 
 #ifndef LED_BUILTIN
-#define LED_BUILTIN PIN_PB1   /* PWM Channel TCB0_WOA Pin */
+#define LED_BUILTIN PIN_PB2
 #endif
-/* #define LED_BUILTIN_INVERT */ /* implementation dependent */
+/* #define LED_BUILTIN_INVERT */
 
 /* peripheral ports */
 #define PIN_RESET         PIN_PB3
