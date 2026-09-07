@@ -11,13 +11,14 @@
 // MIT License : https://askn37.github.io/LICENSE.html
 
 #pragma once
+#include "variant_io.h"
 
 #define ENABLE_MACRO_DIGITAL 1
 
 /* MACRO API */
 
-#ifndef __CONCAT
-#define __CONCAT(A,B) A##B
+#ifndef __CONCAT2
+#define __CONCAT2(A,B) A##B
 #endif
 
 #ifndef __CONCAT3
@@ -314,5 +315,74 @@
 #define VPORTCHG__
 #define VPORTCHG__251
 #define VPORTCHG_255_251
+
+/*
+ * pinPosition(PIN) macro
+ */
+#define pinPosition(PIN) (PIN & 7)
+
+/*
+ * pinBitmask(PIN) macro
+ */
+#define pinBitmask(PIN) (1 << (PIN & 7))
+
+/*
+ * vportRegister(PIN) macro
+ */
+#define portRegister(PIN) __CONCAT3(VPORTREG_,PIN,_)
+#define vportRegister(PIN) __CONCAT3(VPORTREG_,PIN,_)
+
+#define VPORTREG_192_ VPORTA
+#define VPORTREG_193_ VPORTA
+#define VPORTREG_194_ VPORTA
+#define VPORTREG_195_ VPORTA
+#define VPORTREG_196_ VPORTA
+#define VPORTREG_197_ VPORTA
+#define VPORTREG_198_ VPORTA
+#define VPORTREG_199_ VPORTA
+
+#define VPORTREG_224_ VPORTB
+#define VPORTREG_225_ VPORTB
+#define VPORTREG_226_ VPORTB
+#define VPORTREG_227_ VPORTB
+
+#define VPORTREG_208_ VPORTC
+#define VPORTREG_209_ VPORTC
+#define VPORTREG_210_ VPORTC
+#define VPORTREG_211_ VPORTC
+#define VPORTREG_212_ VPORTC
+#define VPORTREG_213_ VPORTC
+
+#define VPORTREG__
+#define VPORTREG_255_
+
+/*
+ * portIntrruptVector(PIN) macro
+ */
+#define portIntrruptVector(PIN) __CONCAT3(PORTVECT_,PIN,_)
+
+#define PORTVECT_192_ PCINT0_vect
+#define PORTVECT_193_ PCINT0_vect
+#define PORTVECT_194_ PCINT0_vect
+#define PORTVECT_195_ PCINT0_vect
+#define PORTVECT_196_ PCINT0_vect
+#define PORTVECT_197_ PCINT0_vect
+#define PORTVECT_198_ PCINT0_vect
+#define PORTVECT_199_ PCINT0_vect
+
+#define PORTVECT_224_ PCINT1_vect
+#define PORTVECT_225_ PCINT1_vect
+#define PORTVECT_226_ PCINT1_vect
+#define PORTVECT_227_ PCINT1_vect
+
+#define PORTVECT_208_ PCINT2_vect
+#define PORTVECT_209_ PCINT2_vect
+#define PORTVECT_210_ PCINT2_vect
+#define PORTVECT_211_ PCINT2_vect
+#define PORTVECT_212_ PCINT2_vect
+#define PORTVECT_213_ PCINT2_vect
+
+#define PORTVECT__
+#define PORTVECT_255_
 
 // end of code

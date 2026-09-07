@@ -22,9 +22,6 @@
  * 
  * The following declarations derived from io.h will be renamed.
  */
-#undef PORTA    /* -> POTA */
-#undef PORTB    /* -> POTB */
-#undef PORTC    /* -> POTC */
 
 /* SPSR */
 #if !defined(SPI2X)
@@ -1064,8 +1061,8 @@ IO Module Instances. Mapped to memory.
 ==========================================================================
 */
 
-#define PORTA                          (*(PORT_t *) 0x00) /* Alias PINA */
-#define PORTB                          (*(PORT_t *) 0x04) /* Alias PINB */
+#define VPORTA                         (*(PORT_t *) 0x00) /* Alias PINA */
+#define VPORTB                         (*(PORT_t *) 0x04) /* Alias PINB */
 #define PORTCTRL                   (*(PORTCTRL_t *) 0x08) /* Alias PORTCR */
 #define PCINT                         (*(PCINT_t *) 0x09) /* Alias PCMSK0 */
 #define EXTINT                       (*(EXTINT_t *) 0x0B) /* Alias GIFR */
@@ -1073,7 +1070,7 @@ IO Module Instances. Mapped to memory.
 #define AC0                              (*(AC_t *) 0x13) /* Alias ACSRB */
 #define TCA0                            (*(TCA_t *) 0x15) /* Alias OCR0B */
 #define TCC0                            (*(TCC_t *) 0x18) /* Alias TCCR0B */
-#define PORTC                          (*(PORT_t *) 0x1B) /* Alias PINC */
+#define VPORTC                         (*(PORT_t *) 0x1B) /* Alias PINC */
 #define RAM                             (*(RAM_t *) 0x1F) /* Alias RAMDR */
 #define TWI0                            (*(TWI_t *) 0x28) /* Alias TWSD */
 #define SPI0                            (*(SPI_t *) 0x2E) /* Alias SPDR */
@@ -1133,21 +1130,18 @@ IO Module Instances. Mapped to memory.
 #define PORTA_IN                    _SFR_IO8(0x00)  /* PINB */
 #define PORTA_DIR                   _SFR_IO8(0x01)  /* DDRB */
 #define PORTA_OUT                   _SFR_IO8(0x02)  /* PORTB */
-#define POTA                        _SFR_IO8(0x02)  /* alias legacy PORTA */
 #define PORTA_PUE                   _SFR_IO8(0x03)  /* PUEB */
 
 /* PORTB - I/O Ports */
 #define PORTB_IN                    _SFR_IO8(0x04)  /* PINB */
 #define PORTB_DIR                   _SFR_IO8(0x05)  /* DDRB */
 #define PORTB_OUT                   _SFR_IO8(0x06)  /* PORTB */
-#define POTB                        _SFR_IO8(0x06)  /* alias legacy PORTB */
 #define PORTB_PUE                   _SFR_IO8(0x07)  /* PUEB */
 
 /* PORTC - I/O Ports */
 #define PORTC_IN                    _SFR_IO8(0x1B)  /* PINC */
 #define PORTC_DIR                   _SFR_IO8(0x1C)  /* DDRC */
 #define PORTC_OUT                   _SFR_IO8(0x1D)  /* PORTC */
-#define POTC                        _SFR_IO8(0x1D)  /* alias legacy PORTC */
 #define PORTC_PUE                   _SFR_IO8(0x1E)  /* PUEC */
 
 /* PORTCTRL - I/O Ports Control */
@@ -1203,6 +1197,24 @@ IO Module Instances. Mapped to memory.
 #define TWI0_SSTATUS                _SFR_IO8(0x2B)  /* TWSSRA */
 #define TWI0_SCTRLB                 _SFR_IO8(0x2C)  /* TWSCRB */
 #define TWI0_SCTRLA                 _SFR_IO8(0x2D)  /* TWSCRA */
+
+/* VPORTA - I/O Ports */
+#define VPORTA_IN                   _SFR_IO8(0x00)  /* PINB */
+#define VPORTA_DIR                  _SFR_IO8(0x01)  /* DDRB */
+#define VPORTA_OUT                  _SFR_IO8(0x02)  /* PORTB */
+#define VPORTA_PUE                  _SFR_IO8(0x03)  /* PUEB */
+
+/* VPORTB - I/O Ports */
+#define VPORTB_IN                   _SFR_IO8(0x04)  /* PINB */
+#define VPORTB_DIR                  _SFR_IO8(0x05)  /* DDRB */
+#define VPORTB_OUT                  _SFR_IO8(0x06)  /* PORTB */
+#define VPORTB_PUE                  _SFR_IO8(0x07)  /* PUEB */
+
+/* VPORTC - I/O Ports */
+#define VPORTC_IN                   _SFR_IO8(0x1B)  /* PINC */
+#define VPORTC_DIR                  _SFR_IO8(0x1C)  /* DDRC */
+#define VPORTC_OUT                  _SFR_IO8(0x1D)  /* PORTC */
+#define VPORTC_PUE                  _SFR_IO8(0x1E)  /* PUEC */
 
 /* WDT - Watchdog Timer Contorol */
 #define WDT_CTRLA                   _SFR_IO8(0x31)  /* WDTCSR */
