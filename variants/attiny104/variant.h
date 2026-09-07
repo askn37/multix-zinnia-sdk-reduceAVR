@@ -49,9 +49,13 @@
 #define PIN_RST     PIN_PA2
 
 #ifndef LED_BUILTIN
-#define LED_BUILTIN PIN_PA5   /* PWM Channel TCB0_WO1_ALT Pin */
+#define LED_BUILTIN PIN_PA5
 #endif
-/* #define LED_BUILTIN_INVERT */ /* implementation dependent */
+/* #define LED_BUILTIN_INVERT */
+
+#ifndef SW_BUILTIN  /* INT0, XPlained Nano */
+#define SW_BUILTIN  PIN_PB1
+#endif
 
 /* peripheral ports */
 #define PIN_RESET         PIN_PA2
