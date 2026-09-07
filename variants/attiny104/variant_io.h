@@ -402,8 +402,8 @@ typedef volatile unsigned short register16_t;
 /* TCB0.INTCTRL [TIMSK0] bit masks and bit positions */
 #define TCB_OVF_bm              (1<<TOIE0)      /* Overflow Interrupt Enable bit mask. */
 #define TCB_OVF_bp              TOIE0           /* Overflow Interrupt Enable bit position. */
-#define TCB_CMPA_bm             (1<<OCIE0A)     /* Compare A Match Interrupt Enable bit mask. */
-#define TCB_CMPA_bp             OCIE0A          /* Compare A Match Interrupt Enable bit position. */
+#define TCB_CCMPA_bm             (1<<OCIE0A)     /* Compare A Match Interrupt Enable bit mask. */
+#define TCB_CCMPA_bp             OCIE0A          /* Compare A Match Interrupt Enable bit position. */
 #define TCB_CMPB_bm             (1<<OCIE0B)     /* Compare B Match Interrupt Enable bit mask. */
 #define TCB_CMPB_bp             OCIE0B          /* Compare B Match Interrupt Enable bit position. */
 #define TCB_CAP_bm              (1<<ICIE0)      /* Input Capture Interrupt Enable bit mask. */
