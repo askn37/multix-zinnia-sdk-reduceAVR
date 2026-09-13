@@ -8,301 +8,401 @@ menu.54_console_select=UART and LED/SW
 menu.90_console_baud=Console
 
 
-01_ATtiny10.name=ATtiny4/5/9/10 (6pin)
-01_ATtiny10.build.board=AVR_ATTINY10
-02_ATtiny20.name=ATtiny20 (14pin with I2C Slave, SPI)
-02_ATtiny20.build.board=AVR_ATTINY20
-03_ATtiny40.name=ATtiny40 (20pin with I2C Sleve, SPI)
-03_ATtiny40.build.board=AVR_ATTINY40
-04_ATtiny104.name=ATtiny102/104 (with UART)
-04_ATtiny104.build.board=AVR_ATTINY104
+ATtiny10.name=ATtiny4/5/9/10 (6pin)
+ATtiny10.build.board=AVR_ATTINY10
+
+ATtiny20.name=ATtiny20 (14pin with I2C Slave, SPI)
+ATtiny20.build.board=AVR_ATTINY20
+
+ATtiny40.name=ATtiny40 (20pin with I2C Sleve, SPI)
+ATtiny40.build.board=AVR_ATTINY40
+
+ATtiny104.name=ATtiny102/104 (with UART)
+ATtiny104.build.board=AVR_ATTINY104
 
 
-01_ATtiny10.programmer.default=21_pickit4_updi
-02_ATtiny20.programmer.default=21_pickit4_updi
-03_ATtiny40.programmer.default=21_pickit4_updi
-04_ATtiny104.programmer.default=25_xplainedmini_tpi
+ATtiny10.programmer.default=pickit4_updi
+ATtiny20.programmer.default=pickit4_updi
+ATtiny40.programmer.default=pickit4_updi
+ATtiny104.programmer.default=xplainedmini_tpi
 
 
-01_ATtiny10.upload.maximum_data_size=32
-01_ATtiny10.upload.maximum_size=1024
-01_ATtiny10.upload.tool=
-01_ATtiny10.bootloader.FUSE=0b1111111{bootloader.reset_bit}
-01_ATtiny10.bootloader.LOCK=0xFF
-01_ATtiny10.bootloader.reset_bit=1
-01_ATtiny10.bootloader.tool=avrdude
-01_ATtiny10.bootloader.fuseupload={bootloader.fuses}
-01_ATtiny10.build.buildopt=-DNDEBUG
-01_ATtiny10.build.compat=
-01_ATtiny10.build.core=reduceAVR
-01_ATtiny10.build.extra_flags={build.buildopt} {build.console_select} {build.macroapi}
-01_ATtiny10.build.console_baud=
-01_ATtiny10.build.console_select=-DLED_BUILTIN=PIN_PB1
-01_ATtiny10.build.macroapi=-DENABLE_MACRO_API
-01_ATtiny10.build.tool=
-01_ATtiny10.compiler.ldflags=
-01_ATtiny10.menu.01_variant.01_ATtiny10.build.board=AVR_ATTINY10
-01_ATtiny10.menu.01_variant.01_ATtiny10.build.mcu=attiny10
-01_ATtiny10.menu.01_variant.01_ATtiny10.build.variant=attiny10
-01_ATtiny10.menu.01_variant.01_ATtiny10.upload.maximum_data_size=32
-01_ATtiny10.menu.01_variant.01_ATtiny10.upload.maximum_size=1024
-01_ATtiny10.menu.01_variant.01_ATtiny10=ATtiny10 (1KiB+32B with ADC)
-01_ATtiny10.menu.01_variant.02_ATtiny9.build.board=AVR_ATTINY9
-01_ATtiny10.menu.01_variant.02_ATtiny9.build.mcu=attiny9
-01_ATtiny10.menu.01_variant.02_ATtiny9.build.variant=attiny10
-01_ATtiny10.menu.01_variant.02_ATtiny9.upload.maximum_data_size=32
-01_ATtiny10.menu.01_variant.02_ATtiny9.upload.maximum_size=1024
-01_ATtiny10.menu.01_variant.02_ATtiny9=ATtiny9 (1KiB+32B)
-01_ATtiny10.menu.01_variant.03_ATtiny5.build.board=AVR_ATTINY5
-01_ATtiny10.menu.01_variant.03_ATtiny5.build.mcu=attiny5
-01_ATtiny10.menu.01_variant.03_ATtiny5.build.variant=attiny10
-01_ATtiny10.menu.01_variant.03_ATtiny5.upload.maximum_data_size=32
-01_ATtiny10.menu.01_variant.03_ATtiny5.upload.maximum_size=512
-01_ATtiny10.menu.01_variant.03_ATtiny5=ATtiny5 (512B+32B with ADC)
-01_ATtiny10.menu.01_variant.04_ATtiny4.build.board=AVR_ATTINY4
-01_ATtiny10.menu.01_variant.04_ATtiny4.build.mcu=attiny4
-01_ATtiny10.menu.01_variant.04_ATtiny4.build.variant=attiny10
-01_ATtiny10.menu.01_variant.04_ATtiny4.upload.maximum_data_size=32
-01_ATtiny10.menu.01_variant.04_ATtiny4.upload.maximum_size=512
-01_ATtiny10.menu.01_variant.04_ATtiny4=ATtiny4 (512B+32B)
-01_ATtiny10.menu.02_clock.01_8MHz.build.f_cpu=8000000L
-01_ATtiny10.menu.02_clock.01_8MHz=Internal 8 MHz (default)
-01_ATtiny10.menu.02_clock.02_4MHz.build.f_cpu=4000000L
-01_ATtiny10.menu.02_clock.02_4MHz=Internal 4 MHz
-01_ATtiny10.menu.02_clock.03_2MHz.build.f_cpu=2000000L
-01_ATtiny10.menu.02_clock.03_2MHz=Internal 2 MHz
-01_ATtiny10.menu.02_clock.04_1MHz.build.f_cpu=1000000L
-01_ATtiny10.menu.02_clock.04_1MHz=Internal 1 MHz
-01_ATtiny10.menu.02_clock.11_128kHz.build.f_cpu=128000L
-01_ATtiny10.menu.02_clock.11_128kHz=Internal 128.000 kHz kHz (ULP)
-01_ATtiny10.menu.02_clock.13_32kHz.build.f_cpu=32000L
-01_ATtiny10.menu.02_clock.13_32kHz=Internal 32.000 kHz kHz (ULP)
-01_ATtiny10.menu.21_resetpin.01_reset.bootloader.reset_bit=1
-01_ATtiny10.menu.21_resetpin.01_reset=PB3 pin=Reset
-01_ATtiny10.menu.21_resetpin.02_gpio.bootloader.reset_bit=0
-01_ATtiny10.menu.21_resetpin.02_gpio=PB3 pin=GPIO (NOT RECOMMENDED)
-01_ATtiny10.menu.27_fusefile.01_menu=Specify in the MENU
-01_ATtiny10.menu.27_fusefile.03_upload.bootloader.fuseupload={bootloader.fusefile}
-01_ATtiny10.menu.27_fusefile.03_upload=Upload ".fuse" file (Use with caution)
-01_ATtiny10.menu.51_buildopt.01_Release.build.buildopt=-DNDEBUG
-01_ATtiny10.menu.51_buildopt.01_Release=Build Release (default)
-01_ATtiny10.menu.51_buildopt.02_Debug1.build.buildopt=-DDEBUG=1
-01_ATtiny10.menu.51_buildopt.02_Debug1=Build DEBUG=1
-01_ATtiny10.menu.51_buildopt.03_Debug2.build.buildopt=-DDEBUG=2
-01_ATtiny10.menu.51_buildopt.03_Debug2=Build DEBUG=2
-01_ATtiny10.menu.52_macroapi.01_Enable=Macro API Enable (default)
-01_ATtiny10.menu.52_macroapi.02_Withoutboot.compiler.ldflags=-nostartfiles -DWOSFILES=1
-01_ATtiny10.menu.52_macroapi.02_Withoutboot=Macro API Enable without startup
-01_ATtiny10.menu.52_macroapi.03_Disable.build.macroapi=
-01_ATtiny10.menu.52_macroapi.03_Disable=Macro API Disable
-01_ATtiny10.menu.52_macroapi.04_AllDisable.build.macroapi=
-01_ATtiny10.menu.52_macroapi.04_AllDisable.compiler.ldflags=-nostartfiles -nostdlib -DWOSFILES=1 -DWOSTDLIB=1
-01_ATtiny10.menu.52_macroapi.04_AllDisable=Standard Library All Disable
-01_ATtiny10.menu.54_console_select.01_PB2.build.console_select=-DLED_BUILTIN=PIN_PB2
-01_ATtiny10.menu.54_console_select.01_PB2=LED=PB2 4:INT0
-01_ATtiny10.menu.54_console_select.02_PB1.build.console_select=-DLED_BUILTIN=PIN_PB1
-01_ATtiny10.menu.54_console_select.02_PB1=LED=PB1 3:TCLK/OC0B
-01_ATtiny10.menu.54_console_select.03_PB0.build.console_select=-DLED_BUILTIN=PIN_PB0
-01_ATtiny10.menu.54_console_select.03_PB0=LED=PB0 1:TDAT/OC0A
+ATtiny10.upload.maximum_data_size=32
+ATtiny10.upload.maximum_size=1024
+ATtiny10.upload.tool=
+ATtiny10.bootloader.FUSE=0b1111111{bootloader.reset_bit}
+ATtiny10.bootloader.LOCK=0xFF
+ATtiny10.bootloader.reset_bit=1
+ATtiny10.bootloader.tool=avrdude
+ATtiny10.bootloader.fuseupload={bootloader.fuses}
+ATtiny10.build.buildopt=-DNDEBUG
+ATtiny10.build.compat=
+ATtiny10.build.core=reduceAVR
+ATtiny10.build.extra_flags={build.buildopt} {build.console_select} {build.macroapi}
+ATtiny10.build.console_baud=
+ATtiny10.build.console_select=-DLED_BUILTIN=PIN_PB1
+ATtiny10.build.macroapi=-DENABLE_MACRO_API
+ATtiny10.build.tool=
+ATtiny10.compiler.ldflags=
+
+ATtiny10.menu.01_variant.ATtiny10=ATtiny10 (1KiB+32B with ADC)
+ATtiny10.menu.01_variant.ATtiny10.build.board=AVR_ATTINY10
+ATtiny10.menu.01_variant.ATtiny10.build.mcu=attiny10
+ATtiny10.menu.01_variant.ATtiny10.build.variant=attiny10
+ATtiny10.menu.01_variant.ATtiny10.upload.maximum_data_size=32
+ATtiny10.menu.01_variant.ATtiny10.upload.maximum_size=1024
+
+ATtiny10.menu.01_variant.ATtiny9=ATtiny9 (1KiB+32B)
+ATtiny10.menu.01_variant.ATtiny9.build.board=AVR_ATTINY9
+ATtiny10.menu.01_variant.ATtiny9.build.mcu=attiny9
+ATtiny10.menu.01_variant.ATtiny9.build.variant=attiny10
+ATtiny10.menu.01_variant.ATtiny9.upload.maximum_data_size=32
+ATtiny10.menu.01_variant.ATtiny9.upload.maximum_size=1024
+
+ATtiny10.menu.01_variant.ATtiny5=ATtiny5 (512B+32B with ADC)
+ATtiny10.menu.01_variant.ATtiny5.build.board=AVR_ATTINY5
+ATtiny10.menu.01_variant.ATtiny5.build.mcu=attiny5
+ATtiny10.menu.01_variant.ATtiny5.build.variant=attiny10
+ATtiny10.menu.01_variant.ATtiny5.upload.maximum_data_size=32
+ATtiny10.menu.01_variant.ATtiny5.upload.maximum_size=512
+
+ATtiny10.menu.01_variant.ATtiny4=ATtiny4 (512B+32B)
+ATtiny10.menu.01_variant.ATtiny4.build.board=AVR_ATTINY4
+ATtiny10.menu.01_variant.ATtiny4.build.mcu=attiny4
+ATtiny10.menu.01_variant.ATtiny4.build.variant=attiny10
+ATtiny10.menu.01_variant.ATtiny4.upload.maximum_data_size=32
+ATtiny10.menu.01_variant.ATtiny4.upload.maximum_size=512
+
+ATtiny10.menu.02_clock.8MHz.build.f_cpu=8000000L
+ATtiny10.menu.02_clock.8MHz=Internal 8 MHz (default)
+
+ATtiny10.menu.02_clock.4MHz.build.f_cpu=4000000L
+ATtiny10.menu.02_clock.4MHz=Internal 4 MHz
+
+ATtiny10.menu.02_clock.2MHz.build.f_cpu=2000000L
+ATtiny10.menu.02_clock.2MHz=Internal 2 MHz
+
+ATtiny10.menu.02_clock.1MHz.build.f_cpu=1000000L
+ATtiny10.menu.02_clock.1MHz=Internal 1 MHz
+
+ATtiny10.menu.02_clock.128kHz=Internal 128 kHz (ULP)
+ATtiny10.menu.02_clock.128kHz.build.f_cpu=128000L
+
+ATtiny10.menu.02_clock.32kHz=Internal 32 kHz (ULP)
+ATtiny10.menu.02_clock.32kHz.build.f_cpu=32000L
+
+ATtiny10.menu.21_resetpin.reset=PB3 pin=Reset
+ATtiny10.menu.21_resetpin.reset.bootloader.reset_bit=1
+
+ATtiny10.menu.21_resetpin.gpio=PB3 pin=GPIO (NOT RECOMMENDED)
+ATtiny10.menu.21_resetpin.gpio.bootloader.reset_bit=0
+
+ATtiny10.menu.27_fusefile.menu=Specify in the MENU
+
+ATtiny10.menu.27_fusefile.Upload=Upload ".fuse" file (Use with caution)
+ATtiny10.menu.27_fusefile.Upload.bootloader.fuseupload={bootloader.fusefile}
+
+ATtiny10.menu.51_buildopt.Release=Release (default)
+ATtiny10.menu.51_buildopt.Release.build.buildopt=-DNDEBUG
+
+ATtiny10.menu.51_buildopt.Debug1=DEBUG=1
+ATtiny10.menu.51_buildopt.Debug1.build.buildopt=-DDEBUG=1
+
+ATtiny10.menu.51_buildopt.Debug2=DEBUG=2
+ATtiny10.menu.51_buildopt.Debug2.build.buildopt=-DDEBUG=2
+
+ATtiny10.menu.52_macroapi.Enable=Macro API Enable (default)
+
+ATtiny10.menu.52_macroapi.WoStartup=Macro API Enable without startup
+ATtiny10.menu.52_macroapi.WoStartup.build.macroapi=-DENABLE_MACRO_API -DWOSFILES=1
+ATtiny10.menu.52_macroapi.WoStartup.compiler.ldflags=-nostartfiles
+
+ATtiny10.menu.52_macroapi.Disable=Macro API Disable
+ATtiny10.menu.52_macroapi.Disable.build.macroapi=
+
+ATtiny10.menu.52_macroapi.AllDisable=Standard Library All Disable
+ATtiny10.menu.52_macroapi.AllDisable.build.macroapi=-DWOSFILES=1 -DWOSTDLIB=1
+ATtiny10.menu.52_macroapi.AllDisable.compiler.ldflags=-nostartfiles -nostdlib
+
+ATtiny10.menu.54_console_select.PB2=LED=PB2 4:INT0
+ATtiny10.menu.54_console_select.PB2.build.console_select=-DLED_BUILTIN=PIN_PB2
+
+ATtiny10.menu.54_console_select.PB1=LED=PB1 3:TCLK/OC0B
+ATtiny10.menu.54_console_select.PB1.build.console_select=-DLED_BUILTIN=PIN_PB1
+
+ATtiny10.menu.54_console_select.PB0=LED=PB0 1:TDAT/OC0A
+ATtiny10.menu.54_console_select.PB0.build.console_select=-DLED_BUILTIN=PIN_PB0
 
 
-02_ATtiny20.upload.maximum_data_size=128
-02_ATtiny20.upload.maximum_size=2048
-02_ATtiny20.upload.tool=
-02_ATtiny20.bootloader.FUSE=0b1111111{bootloader.reset_bit}
-02_ATtiny20.bootloader.LOCK=0xFF
-02_ATtiny20.bootloader.reset_bit=1
-02_ATtiny20.bootloader.tool=avrdude
-02_ATtiny20.bootloader.fuseupload={bootloader.fuses}
-02_ATtiny20.build.buildopt=-DNDEBUG
-02_ATtiny20.build.compat=
-02_ATtiny20.build.core=reduceAVR
-02_ATtiny20.build.extra_flags={build.buildopt} {build.console_select} {build.macroapi}
-02_ATtiny20.build.console_baud=
-02_ATtiny20.build.console_select=
-02_ATtiny20.build.macroapi=-DENABLE_MACRO_API
-02_ATtiny20.build.tool=
-02_ATtiny20.compiler.ldflags=
-02_ATtiny20.menu.01_variant.01_ATtiny40.build.board=AVR_ATTINY20
-02_ATtiny20.menu.01_variant.01_ATtiny40.build.mcu=attiny20
-02_ATtiny20.menu.01_variant.01_ATtiny40.build.variant=attiny20
-02_ATtiny20.menu.01_variant.01_ATtiny40.upload.maximum_data_size=256
-02_ATtiny20.menu.01_variant.01_ATtiny40.upload.maximum_size=4096
-02_ATtiny20.menu.01_variant.01_ATtiny40=ATtiny20 (2KiB+128B)
-02_ATtiny20.menu.02_clock.01_8MHz.build.f_cpu=8000000L
-02_ATtiny20.menu.02_clock.01_8MHz=Internal 8 MHz (default)
-02_ATtiny20.menu.02_clock.02_4MHz.build.f_cpu=4000000L
-02_ATtiny20.menu.02_clock.02_4MHz=Internal 4 MHz
-02_ATtiny20.menu.02_clock.03_2MHz.build.f_cpu=2000000L
-02_ATtiny20.menu.02_clock.03_2MHz=Internal 2 MHz
-02_ATtiny20.menu.02_clock.04_1MHz.build.f_cpu=1000000L
-02_ATtiny20.menu.02_clock.04_1MHz=Internal 1 MHz
-02_ATtiny20.menu.02_clock.11_128kHz.build.f_cpu=128000L
-02_ATtiny20.menu.02_clock.11_128kHz=Internal 128.000 kHz kHz (ULP)
-02_ATtiny20.menu.02_clock.13_32kHz.build.f_cpu=32000L
-02_ATtiny20.menu.02_clock.13_32kHz=Internal 32.000 kHz kHz (ULP)
-02_ATtiny20.menu.21_resetpin.01_reset.bootloader.reset_bit=1
-02_ATtiny20.menu.21_resetpin.01_reset=PB3 pin=Reset
-02_ATtiny20.menu.21_resetpin.02_gpio.bootloader.reset_bit=0
-02_ATtiny20.menu.21_resetpin.02_gpio=PB3 pin=GPIO (NOT RECOMMENDED)
-02_ATtiny20.menu.27_fusefile.01_menu=Specify in the MENU
-02_ATtiny20.menu.27_fusefile.03_upload.bootloader.fuseupload={bootloader.fusefile}
-02_ATtiny20.menu.27_fusefile.03_upload=Upload ".fuse" file (Use with caution)
-02_ATtiny20.menu.51_buildopt.01_Release.build.buildopt=-DNDEBUG
-02_ATtiny20.menu.51_buildopt.01_Release=Build Release (default)
-02_ATtiny20.menu.51_buildopt.02_Debug1.build.buildopt=-DDEBUG=1
-02_ATtiny20.menu.51_buildopt.02_Debug1=Build DEBUG=1
-02_ATtiny20.menu.51_buildopt.03_Debug2.build.buildopt=-DDEBUG=2
-02_ATtiny20.menu.51_buildopt.03_Debug2=Build DEBUG=2
-02_ATtiny20.menu.52_macroapi.01_Enable=Macro API Enable (default)
-02_ATtiny20.menu.52_macroapi.02_Withoutboot.compiler.ldflags=-nostartfiles -DWOSFILES=1
-02_ATtiny20.menu.52_macroapi.02_Withoutboot=Macro API Enable without startup
-02_ATtiny20.menu.52_macroapi.03_Disable.build.macroapi=
-02_ATtiny20.menu.52_macroapi.03_Disable=Macro API Disable
-02_ATtiny20.menu.52_macroapi.04_AllDisable.build.macroapi=
-02_ATtiny20.menu.52_macroapi.04_AllDisable.compiler.ldflags=-nostartfiles -nostdlib -DWOSFILES=1 -DWOSTDLIB=1
-02_ATtiny20.menu.52_macroapi.04_AllDisable=Standard Library All Disable
-02_ATtiny20.menu.54_console_select.01_PC0.build.console_select=-DLED_BUILTIN=PIN_PA7 -DSW_BUILTIN=PIN_PA0
-02_ATtiny20.menu.54_console_select.01_PC0=LED=PA7 SW=PA0:INT0
+ATtiny20.upload.maximum_data_size=128
+ATtiny20.upload.maximum_size=2048
+ATtiny20.upload.tool=
+ATtiny20.bootloader.FUSE=0b1111111{bootloader.reset_bit}
+ATtiny20.bootloader.LOCK=0xFF
+ATtiny20.bootloader.reset_bit=1
+ATtiny20.bootloader.tool=avrdude
+ATtiny20.bootloader.fuseupload={bootloader.fuses}
+ATtiny20.build.buildopt=-DNDEBUG
+ATtiny20.build.compat=
+ATtiny20.build.core=reduceAVR
+ATtiny20.build.extra_flags={build.buildopt} {build.console_select} {build.macroapi}
+ATtiny20.build.console_baud=
+ATtiny20.build.console_select=
+ATtiny20.build.macroapi=-DENABLE_MACRO_API
+ATtiny20.build.tool=
+ATtiny20.compiler.ldflags=
+
+ATtiny20.menu.01_variant.ATtiny20=ATtiny20 (2KiB+128B)
+ATtiny20.menu.01_variant.ATtiny20.build.board=AVR_ATTINY20
+ATtiny20.menu.01_variant.ATtiny20.build.mcu=attiny20
+ATtiny20.menu.01_variant.ATtiny20.build.variant=attiny20
+ATtiny20.menu.01_variant.ATtiny20.upload.maximum_data_size=256
+ATtiny20.menu.01_variant.ATtiny20.upload.maximum_size=4096
+
+ATtiny20.menu.02_clock.8MHz=Internal 8 MHz (default)
+ATtiny20.menu.02_clock.8MHz.build.f_cpu=8000000L
+
+ATtiny20.menu.02_clock.4MHz=Internal 4 MHz
+ATtiny20.menu.02_clock.4MHz.build.f_cpu=4000000L
+
+ATtiny20.menu.02_clock.2MHz=Internal 2 MHz
+ATtiny20.menu.02_clock.2MHz.build.f_cpu=2000000L
+
+ATtiny20.menu.02_clock.1MHz=Internal 1 MHz
+ATtiny20.menu.02_clock.1MHz.build.f_cpu=1000000L
+
+ATtiny20.menu.02_clock.128kHz=Internal 128 kHz (ULP)
+ATtiny20.menu.02_clock.128kHz.build.f_cpu=128000L
+
+ATtiny20.menu.02_clock.32kHz=Internal 32 kHz (ULP)
+ATtiny20.menu.02_clock.32kHz.build.f_cpu=32000L
+
+ATtiny20.menu.21_resetpin.reset=PB3 pin=Reset
+ATtiny20.menu.21_resetpin.reset.bootloader.reset_bit=1
+
+ATtiny20.menu.21_resetpin.gpio=PB3 pin=GPIO (NOT RECOMMENDED)
+ATtiny20.menu.21_resetpin.gpio.bootloader.reset_bit=0
+
+ATtiny20.menu.27_fusefile.menu=Specify in the MENU
+
+ATtiny20.menu.27_fusefile.Upload=Upload ".fuse" file (Use with caution)
+ATtiny20.menu.27_fusefile.Upload.bootloader.fuseupload={bootloader.fusefile}
+
+ATtiny20.menu.51_buildopt.Release=Release (default)
+ATtiny20.menu.51_buildopt.Release.build.buildopt=-DNDEBUG
+
+ATtiny20.menu.51_buildopt.Debug1=DEBUG=1
+ATtiny20.menu.51_buildopt.Debug1.build.buildopt=-DDEBUG=1
+
+ATtiny20.menu.51_buildopt.Debug2=DEBUG=2
+ATtiny20.menu.51_buildopt.Debug2.build.buildopt=-DDEBUG=2
+
+ATtiny20.menu.52_macroapi.Enable=Macro API Enable (default)
+
+ATtiny20.menu.52_macroapi.WoStartup=Macro API Enable without startup
+ATtiny20.menu.52_macroapi.WoStartup.build.macroapi=-DENABLE_MACRO_API -DWOSFILES=1
+ATtiny20.menu.52_macroapi.WoStartup.compiler.ldflags=-nostartfiles
+
+ATtiny20.menu.52_macroapi.Disable=Macro API Disable
+ATtiny20.menu.52_macroapi.Disable.build.macroapi=
+
+ATtiny20.menu.52_macroapi.AllDisable=Standard Library All Disable
+ATtiny20.menu.52_macroapi.AllDisable.build.macroapi=-DWOSFILES=1 -DWOSTDLIB=1
+ATtiny20.menu.52_macroapi.AllDisable.compiler.ldflags=-nostartfiles -nostdlib
+
+ATtiny20.menu.54_console_select.PA7=LED=PA7 SW=PA0:INT0
+ATtiny20.menu.54_console_select.PA7.build.console_select=-DLED_BUILTIN=PIN_PA7 -DSW_BUILTIN=PIN_PA0
 
 
-03_ATtiny40.upload.maximum_data_size=256
-03_ATtiny40.upload.maximum_size=4096
-03_ATtiny40.upload.tool=
-03_ATtiny40.bootloader.FUSE=0b1111111{bootloader.reset_bit}
-03_ATtiny40.bootloader.LOCK=0xFF
-03_ATtiny40.bootloader.reset_bit=1
-03_ATtiny40.bootloader.tool=avrdude
-03_ATtiny40.bootloader.fuseupload={bootloader.fuses}
-03_ATtiny40.build.buildopt=-DNDEBUG
-03_ATtiny40.build.compat=
-03_ATtiny40.build.core=reduceAVR
-03_ATtiny40.build.extra_flags={build.buildopt} {build.console_select} {build.macroapi}
-03_ATtiny40.build.console_baud=
-03_ATtiny40.build.console_select=
-03_ATtiny40.build.macroapi=-DENABLE_MACRO_API
-03_ATtiny40.build.tool=
-03_ATtiny40.compiler.ldflags=
-03_ATtiny40.menu.01_variant.01_ATtiny40.build.board=AVR_ATTINY40
-03_ATtiny40.menu.01_variant.01_ATtiny40.build.mcu=attiny40
-03_ATtiny40.menu.01_variant.01_ATtiny40.build.variant=attiny40
-03_ATtiny40.menu.01_variant.01_ATtiny40.upload.maximum_data_size=256
-03_ATtiny40.menu.01_variant.01_ATtiny40.upload.maximum_size=4096
-03_ATtiny40.menu.01_variant.01_ATtiny40=ATtiny40 (4KiB+256B)
-03_ATtiny40.menu.02_clock.01_8MHz.build.f_cpu=8000000L
-03_ATtiny40.menu.02_clock.01_8MHz=Internal 8 MHz (default)
-03_ATtiny40.menu.02_clock.02_4MHz.build.f_cpu=4000000L
-03_ATtiny40.menu.02_clock.02_4MHz=Internal 4 MHz
-03_ATtiny40.menu.02_clock.03_2MHz.build.f_cpu=2000000L
-03_ATtiny40.menu.02_clock.03_2MHz=Internal 2 MHz
-03_ATtiny40.menu.02_clock.04_1MHz.build.f_cpu=1000000L
-03_ATtiny40.menu.02_clock.04_1MHz=Internal 1 MHz
-03_ATtiny40.menu.02_clock.11_128kHz.build.f_cpu=128000L
-03_ATtiny40.menu.02_clock.11_128kHz=Internal 128.000 kHz kHz (ULP)
-03_ATtiny40.menu.02_clock.13_32kHz.build.f_cpu=32000L
-03_ATtiny40.menu.02_clock.13_32kHz=Internal 32.000 kHz kHz (ULP)
-03_ATtiny40.menu.21_resetpin.01_reset.bootloader.reset_bit=1
-03_ATtiny40.menu.21_resetpin.01_reset=PC3 pin=Reset
-03_ATtiny40.menu.21_resetpin.02_gpio.bootloader.reset_bit=0
-03_ATtiny40.menu.21_resetpin.02_gpio=PC3 pin=GPIO (NOT RECOMMENDED)
-03_ATtiny40.menu.27_fusefile.01_menu=Specify in the MENU
-03_ATtiny40.menu.27_fusefile.03_upload.bootloader.fuseupload={bootloader.fusefile}
-03_ATtiny40.menu.27_fusefile.03_upload=Upload ".fuse" file (Use with caution)
-03_ATtiny40.menu.51_buildopt.01_Release.build.buildopt=-DNDEBUG
-03_ATtiny40.menu.51_buildopt.01_Release=Build Release (default)
-03_ATtiny40.menu.51_buildopt.02_Debug1.build.buildopt=-DDEBUG=1
-03_ATtiny40.menu.51_buildopt.02_Debug1=Build DEBUG=1
-03_ATtiny40.menu.51_buildopt.03_Debug2.build.buildopt=-DDEBUG=2
-03_ATtiny40.menu.51_buildopt.03_Debug2=Build DEBUG=2
-03_ATtiny40.menu.52_macroapi.01_Enable=Macro API Enable (default)
-03_ATtiny40.menu.52_macroapi.02_Withoutboot.compiler.ldflags=-nostartfiles -DWOSFILES=1
-03_ATtiny40.menu.52_macroapi.02_Withoutboot=Macro API Enable without startup
-03_ATtiny40.menu.52_macroapi.03_Disable.build.macroapi=
-03_ATtiny40.menu.52_macroapi.03_Disable=Macro API Disable
-03_ATtiny40.menu.52_macroapi.04_AllDisable.build.macroapi=
-03_ATtiny40.menu.52_macroapi.04_AllDisable.compiler.ldflags=-nostartfiles -nostdlib -DWOSFILES=1 -DWOSTDLIB=1
-03_ATtiny40.menu.52_macroapi.04_AllDisable=Standard Library All Disable
-03_ATtiny40.menu.54_console_select.01_PC0.build.console_select=-DLED_BUILTIN=PIN_PC0 -DSW_BUILTIN=PIN_PC2
-03_ATtiny40.menu.54_console_select.01_PC0=LED=PC0 SW=PC2:INT0
+ATtiny40.upload.maximum_data_size=256
+ATtiny40.upload.maximum_size=4096
+ATtiny40.upload.tool=
+ATtiny40.bootloader.FUSE=0b1111111{bootloader.reset_bit}
+ATtiny40.bootloader.LOCK=0xFF
+ATtiny40.bootloader.reset_bit=1
+ATtiny40.bootloader.tool=avrdude
+ATtiny40.bootloader.fuseupload={bootloader.fuses}
+ATtiny40.build.buildopt=-DNDEBUG
+ATtiny40.build.compat=
+ATtiny40.build.core=reduceAVR
+ATtiny40.build.extra_flags={build.buildopt} {build.console_select} {build.macroapi}
+ATtiny40.build.console_baud=
+ATtiny40.build.console_select=
+ATtiny40.build.macroapi=-DENABLE_MACRO_API
+ATtiny40.build.tool=
+ATtiny40.compiler.ldflags=
+
+ATtiny40.menu.01_variant.ATtiny40=ATtiny40 (4KiB+256B)
+ATtiny40.menu.01_variant.ATtiny40.build.board=AVR_ATTINY40
+ATtiny40.menu.01_variant.ATtiny40.build.mcu=attiny40
+ATtiny40.menu.01_variant.ATtiny40.build.variant=attiny40
+ATtiny40.menu.01_variant.ATtiny40.upload.maximum_data_size=256
+ATtiny40.menu.01_variant.ATtiny40.upload.maximum_size=4096
+
+ATtiny40.menu.02_clock.8MHz=Internal 8 MHz (default)
+ATtiny40.menu.02_clock.8MHz.build.f_cpu=8000000L
+
+ATtiny40.menu.02_clock.4MHz=Internal 4 MHz
+ATtiny40.menu.02_clock.4MHz.build.f_cpu=4000000L
+
+ATtiny40.menu.02_clock.2MHz=Internal 2 MHz
+ATtiny40.menu.02_clock.2MHz.build.f_cpu=2000000L
+
+ATtiny40.menu.02_clock.1MHz=Internal 1 MHz
+ATtiny40.menu.02_clock.1MHz.build.f_cpu=1000000L
+
+ATtiny40.menu.02_clock.128kHz=Internal 128 kHz (ULP)
+ATtiny40.menu.02_clock.128kHz.build.f_cpu=128000L
+
+ATtiny40.menu.02_clock.32kHz=Internal 32 kHz (ULP)
+ATtiny40.menu.02_clock.32kHz.build.f_cpu=32000L
+
+ATtiny40.menu.21_resetpin.Reset=PC3 pin=Reset
+ATtiny40.menu.21_resetpin.Reset.bootloader.reset_bit=1
+
+ATtiny40.menu.21_resetpin.Gpio=PC3 pin=GPIO (NOT RECOMMENDED)
+ATtiny40.menu.21_resetpin.Gpio.bootloader.reset_bit=0
+
+ATtiny40.menu.27_fusefile.Menu=Specify in the MENU
+
+ATtiny40.menu.27_fusefile.Upload=Upload ".fuse" file (Use with caution)
+ATtiny40.menu.27_fusefile.Upload.bootloader.fuseupload={bootloader.fusefile}
+
+ATtiny40.menu.51_buildopt.Release=Release (default)
+ATtiny40.menu.51_buildopt.Release.build.buildopt=-DNDEBUG
+
+ATtiny40.menu.51_buildopt.Debug1=DEBUG=1
+ATtiny40.menu.51_buildopt.Debug1.build.buildopt=-DDEBUG=1
+
+ATtiny40.menu.51_buildopt.Debug2=DEBUG=2
+ATtiny40.menu.51_buildopt.Debug2.build.buildopt=-DDEBUG=2
+
+ATtiny40.menu.52_macroapi.Enable=Macro API Enable (default)
+
+ATtiny40.menu.52_macroapi.WoStartup=Macro API Enable without startup
+ATtiny40.menu.52_macroapi.WoStartup.build.macroapi=-DENABLE_MACRO_API -DWOSFILES=1
+ATtiny40.menu.52_macroapi.WoStartup.compiler.ldflags=-nostartfiles
+
+ATtiny40.menu.52_macroapi.Disable=Macro API Disable
+ATtiny40.menu.52_macroapi.Disable.build.macroapi=
+
+ATtiny40.menu.52_macroapi.AllDisable=Standard Library All Disable
+ATtiny40.menu.52_macroapi.AllDisable.build.macroapi=-DWOSFILES=1 -DWOSTDLIB=1
+ATtiny40.menu.52_macroapi.AllDisable.compiler.ldflags=-nostartfiles -nostdlib
+
+ATtiny40.menu.54_console_select.PC0=LED=PC0 SW=PC2:INT0
+ATtiny40.menu.54_console_select.PC0.build.console_select=-DLED_BUILTIN=PIN_PC0 -DSW_BUILTIN=PIN_PC2
 
 
-04_ATtiny104.upload.maximum_data_size=32
-04_ATtiny104.upload.maximum_size=1024
-04_ATtiny104.upload.tool=
-04_ATtiny104.bootloader.FUSE=0b1111111{bootloader.reset_bit}
-04_ATtiny104.bootloader.LOCK=0xFF
-04_ATtiny104.bootloader.reset_bit=1
-04_ATtiny104.bootloader.tool=avrdude
-04_ATtiny104.bootloader.fuseupload={bootloader.fuses}
-04_ATtiny104.build.buildopt=-DNDEBUG
-04_ATtiny104.build.compat=
-04_ATtiny104.build.core=reduceAVR
-04_ATtiny104.build.extra_flags={build.buildopt} {build.console_select} {build.macroapi}
-04_ATtiny104.build.console_baud=
-04_ATtiny104.build.console_select=-DLED_BUILTIN=PIN_PA5
-04_ATtiny104.build.macroapi=-DENABLE_MACRO_API
-04_ATtiny104.build.tool=
-04_ATtiny104.compiler.ldflags=
-04_ATtiny104.menu.01_variant.01_ATtiny104.build.board=AVR_ATTINY104
-04_ATtiny104.menu.01_variant.01_ATtiny104.build.mcu=attiny104
-04_ATtiny104.menu.01_variant.01_ATtiny104.build.variant=attiny104
-04_ATtiny104.menu.01_variant.01_ATtiny104.upload.maximum_data_size=32
-04_ATtiny104.menu.01_variant.01_ATtiny104.upload.maximum_size=1024
-04_ATtiny104.menu.01_variant.01_ATtiny104=14pin ATtiny104 (1KiB+32B) ADCx8
-04_ATtiny104.menu.01_variant.02_ATtiny102.build.board=AVR_ATTINY102
-04_ATtiny104.menu.01_variant.02_ATtiny102.build.mcu=attiny102
-04_ATtiny104.menu.01_variant.02_ATtiny102.build.variant=attiny104
-04_ATtiny104.menu.01_variant.02_ATtiny102.upload.maximum_data_size=32
-04_ATtiny104.menu.01_variant.02_ATtiny102.upload.maximum_size=1024
-04_ATtiny104.menu.01_variant.02_ATtiny102=8pin ATtiny102 (1KiB+32B) ADCx5
-04_ATtiny104.menu.02_clock.01_8MHz.build.f_cpu=8000000L
-04_ATtiny104.menu.02_clock.01_8MHz=Internal 8 MHz (default)
-04_ATtiny104.menu.02_clock.02_4MHz.build.f_cpu=4000000L
-04_ATtiny104.menu.02_clock.02_4MHz=Internal 4 MHz
-04_ATtiny104.menu.02_clock.03_2MHz.build.f_cpu=2000000L
-04_ATtiny104.menu.02_clock.03_2MHz=Internal 2 MHz
-04_ATtiny104.menu.02_clock.04_1MHz.build.f_cpu=1000000L
-04_ATtiny104.menu.02_clock.04_1MHz=Internal 1 MHz
-04_ATtiny104.menu.02_clock.11_128kHz.build.f_cpu=128000L
-04_ATtiny104.menu.02_clock.11_128kHz=Internal 128.000 kHz kHz (ULP)
-04_ATtiny104.menu.02_clock.13_32kHz.build.f_cpu=32000L
-04_ATtiny104.menu.02_clock.13_32kHz=Internal 32.000 kHz kHz (ULP)
-04_ATtiny104.menu.21_resetpin.01_reset.bootloader.reset_bit=1
-04_ATtiny104.menu.21_resetpin.01_reset=PA2 pin=Reset
-04_ATtiny104.menu.21_resetpin.02_gpio.bootloader.reset_bit=0
-04_ATtiny104.menu.21_resetpin.02_gpio=PA2 pin=GPIO (NOT RECOMMENDED)
-04_ATtiny104.menu.27_fusefile.01_menu=Specify in the MENU
-04_ATtiny104.menu.27_fusefile.03_upload.bootloader.fuseupload={bootloader.fusefile}
-04_ATtiny104.menu.27_fusefile.03_upload=Upload ".fuse" file (Use with caution)
-04_ATtiny104.menu.51_buildopt.01_Release.build.buildopt=-DNDEBUG
-04_ATtiny104.menu.51_buildopt.01_Release=Build Release (default)
-04_ATtiny104.menu.51_buildopt.02_Debug1.build.buildopt=-DDEBUG=1
-04_ATtiny104.menu.51_buildopt.02_Debug1=Build DEBUG=1
-04_ATtiny104.menu.51_buildopt.03_Debug2.build.buildopt=-DDEBUG=2
-04_ATtiny104.menu.51_buildopt.03_Debug2=Build DEBUG=2
-04_ATtiny104.menu.52_macroapi.01_Enable=Macro API Enable (default)
-04_ATtiny104.menu.52_macroapi.02_Withoutboot.compiler.ldflags=-nostartfiles -DWOSFILES=1
-04_ATtiny104.menu.52_macroapi.02_Withoutboot=Macro API Enable without startup
-04_ATtiny104.menu.52_macroapi.03_Disable.build.macroapi=
-04_ATtiny104.menu.52_macroapi.03_Disable=Macro API Disable
-04_ATtiny104.menu.52_macroapi.04_AllDisable.build.macroapi=
-04_ATtiny104.menu.52_macroapi.04_AllDisable.compiler.ldflags=-nostartfiles -nostdlib -DWOSFILES=1 -DWOSTDLIB=1
-04_ATtiny104.menu.52_macroapi.04_AllDisable=Standard Library All Disable
-04_ATtiny104.menu.90_console_baud.01_9600bps.build.console_baud=-DCONSOLE_BAUD=9600
-04_ATtiny104.menu.90_console_baud.01_9600bps=CONSOLE_BAUD=9600 bps (default)
-04_ATtiny104.menu.90_console_baud.03_38400bps.build.console_baud=-DCONSOLE_BAUD=38400
-04_ATtiny104.menu.90_console_baud.03_38400bps=CONSOLE_BAUD=38400 bps
-04_ATtiny104.menu.90_console_baud.04_57600bps.build.console_baud=-DCONSOLE_BAUD=57600
-04_ATtiny104.menu.90_console_baud.04_57600bps=CONSOLE_BAUD=57600 bps
-04_ATtiny104.menu.90_console_baud.05_115200bps.build.console_baud=-DCONSOLE_BAUD=115200
-04_ATtiny104.menu.90_console_baud.05_115200bps=CONSOLE_BAUD=115200 bps
-04_ATtiny104.menu.90_console_baud.06_230400bps.build.console_baud=-DCONSOLE_BAUD=230400
-04_ATtiny104.menu.90_console_baud.06_230400bps=CONSOLE_BAUD=230400 bps
-04_ATtiny104.menu.90_console_baud.13_250000bps.build.console_baud=-DCONSOLE_BAUD=250000
-04_ATtiny104.menu.90_console_baud.13_250000bps=CONSOLE_BAUD=250000 bps
-04_ATtiny104.menu.90_console_baud.14_500000bps.build.console_baud=-DCONSOLE_BAUD=500000
-04_ATtiny104.menu.90_console_baud.14_500000bps=CONSOLE_BAUD=500000 bps
-04_ATtiny104.menu.54_console_select.01_PA5.build.console_select=-DLED_BUILTIN=PIN_PA5 -DSW_BUILTIN=PIN_PB1 -DSerial=Serial0
-04_ATtiny104.menu.54_console_select.01_PA5=UART0 TX:PB2 RX:PB3 LED=PA5 SW=PB1:INT0 (ATtiny104 Xplained Nano)
-04_ATtiny104.menu.54_console_select.02_PA1.build.console_select=-DLED_BUILTIN=PIN_PA1 -DSerial=Serial0
-04_ATtiny104.menu.54_console_select.02_PA1=UART0 TX:PB2 RX:PB3 LED=PA1
+ATtiny104.upload.maximum_data_size=32
+ATtiny104.upload.maximum_size=1024
+ATtiny104.upload.tool=
+ATtiny104.bootloader.FUSE=0b1111111{bootloader.reset_bit}
+ATtiny104.bootloader.LOCK=0xFF
+ATtiny104.bootloader.reset_bit=1
+ATtiny104.bootloader.tool=avrdude
+ATtiny104.bootloader.fuseupload={bootloader.fuses}
+ATtiny104.build.buildopt=-DNDEBUG
+ATtiny104.build.compat=
+ATtiny104.build.core=reduceAVR
+ATtiny104.build.extra_flags={build.buildopt} {build.console_select} {build.macroapi}
+ATtiny104.build.console_baud=
+ATtiny104.build.console_select=-DLED_BUILTIN=PIN_PA5
+ATtiny104.build.macroapi=-DENABLE_MACRO_API
+ATtiny104.build.tool=
+ATtiny104.compiler.ldflags=
+
+ATtiny104.menu.01_variant.ATtiny104=14pin ATtiny104 (1KiB+32B) ADCx8
+ATtiny104.menu.01_variant.ATtiny104.build.board=AVR_ATTINY104
+ATtiny104.menu.01_variant.ATtiny104.build.mcu=attiny104
+ATtiny104.menu.01_variant.ATtiny104.build.variant=attiny104
+ATtiny104.menu.01_variant.ATtiny104.upload.maximum_data_size=32
+ATtiny104.menu.01_variant.ATtiny104.upload.maximum_size=1024
+
+ATtiny104.menu.01_variant.ATtiny102=8pin ATtiny102 (1KiB+32B) ADCx5
+ATtiny104.menu.01_variant.ATtiny102.build.board=AVR_ATTINY102
+ATtiny104.menu.01_variant.ATtiny102.build.mcu=attiny102
+ATtiny104.menu.01_variant.ATtiny102.build.variant=attiny104
+ATtiny104.menu.01_variant.ATtiny102.upload.maximum_data_size=32
+ATtiny104.menu.01_variant.ATtiny102.upload.maximum_size=1024
+
+ATtiny104.menu.02_clock.8MHz=Internal 8 MHz (default)
+ATtiny104.menu.02_clock.8MHz.build.f_cpu=8000000L
+
+ATtiny104.menu.02_clock.4MHz=Internal 4 MHz
+ATtiny104.menu.02_clock.4MHz.build.f_cpu=4000000L
+
+ATtiny104.menu.02_clock.2MHz=Internal 2 MHz
+ATtiny104.menu.02_clock.2MHz.build.f_cpu=2000000L
+
+ATtiny104.menu.02_clock.1MHz=Internal 1 MHz
+ATtiny104.menu.02_clock.1MHz.build.f_cpu=1000000L
+
+ATtiny104.menu.02_clock.128kHz=Internal 128 kHz (ULP)
+ATtiny104.menu.02_clock.128kHz.build.f_cpu=128000L
+
+ATtiny104.menu.02_clock.32kHz=Internal 32 kHz (ULP)
+ATtiny104.menu.02_clock.32kHz.build.f_cpu=32000L
+
+ATtiny104.menu.21_resetpin.Reset=PA2 pin=Reset
+ATtiny104.menu.21_resetpin.Reset.bootloader.reset_bit=1
+
+ATtiny104.menu.21_resetpin.Gpio=PA2 pin=GPIO (NOT RECOMMENDED)
+ATtiny104.menu.21_resetpin.Gpio.bootloader.reset_bit=0
+
+ATtiny104.menu.27_fusefile.Menu=Specify in the MENU
+
+ATtiny104.menu.27_fusefile.Upload.bootloader.fuseupload={bootloader.fusefile}
+ATtiny104.menu.27_fusefile.Upload=Upload ".fuse" file (Use with caution)
+
+ATtiny104.menu.51_buildopt.Release=Release (default)
+ATtiny104.menu.51_buildopt.Release.build.buildopt=-DNDEBUG
+
+ATtiny104.menu.51_buildopt.Debug1=DEBUG=1
+ATtiny104.menu.51_buildopt.Debug1.build.buildopt=-DDEBUG=1
+
+ATtiny104.menu.51_buildopt.Debug2=DEBUG=2
+ATtiny104.menu.51_buildopt.Debug2.build.buildopt=-DDEBUG=2
+
+ATtiny104.menu.52_macroapi.Enable=Macro API Enable (default)
+
+ATtiny104.menu.52_macroapi.WoStartup=Macro API Enable without startup
+ATtiny104.menu.52_macroapi.WoStartup.build.macroapi=-DENABLE_MACRO_API -DWOSFILES=1
+ATtiny104.menu.52_macroapi.WoStartup.compiler.ldflags=-nostartfiles
+
+ATtiny104.menu.52_macroapi.Disable=Macro API Disable
+ATtiny104.menu.52_macroapi.Disable.build.macroapi=
+
+ATtiny104.menu.52_macroapi.AllDisable=Standard Library All Disable
+ATtiny104.menu.52_macroapi.AllDisable.build.macroapi=-DWOSFILES=1 -DWOSTDLIB=1
+ATtiny104.menu.52_macroapi.AllDisable.compiler.ldflags=-nostartfiles -nostdlib
+
+ATtiny104.menu.54_console_select.PA5=UART0 TX:PB2 RX:PB3 LED=PA5 SW=PB1:INT0 (ATtiny104 Xplained Nano)
+ATtiny104.menu.54_console_select.PA5.build.console_select=-DLED_BUILTIN=PIN_PA5 -DSW_BUILTIN=PIN_PB1 -DSerial=Serial0
+
+ATtiny104.menu.54_console_select.PA1=UART0 TX:PB2 RX:PB3 LED=PA1
+ATtiny104.menu.54_console_select.PA1.build.console_select=-DLED_BUILTIN=PIN_PA1 -DSerial=Serial0
+
+ATtiny104.menu.90_console_baud.9600bps=9600 bps (default)
+ATtiny104.menu.90_console_baud.9600bps.build.console_baud=-DCONSOLE_BAUD=9600
+
+ATtiny104.menu.90_console_baud.19200bps=19200 bps (default)
+ATtiny104.menu.90_console_baud.19200bps.build.console_baud=-DCONSOLE_BAUD=19200
+
+ATtiny104.menu.90_console_baud.38400bps=38400 bps
+ATtiny104.menu.90_console_baud.38400bps.build.console_baud=-DCONSOLE_BAUD=38400
+
+ATtiny104.menu.90_console_baud.57600bps=57600 bps
+ATtiny104.menu.90_console_baud.57600bps.build.console_baud=-DCONSOLE_BAUD=57600
+
+ATtiny104.menu.90_console_baud.115200bps=115200 bps
+ATtiny104.menu.90_console_baud.115200bps.build.console_baud=-DCONSOLE_BAUD=115200
+
+ATtiny104.menu.90_console_baud.230400bps=230400 bps
+ATtiny104.menu.90_console_baud.230400bps.build.console_baud=-DCONSOLE_BAUD=230400
+
+ATtiny104.menu.90_console_baud.250000bps=250000 bps
+ATtiny104.menu.90_console_baud.250000bps.build.console_baud=-DCONSOLE_BAUD=250000
+
+ATtiny104.menu.90_console_baud.500000bps=500000 bps
+ATtiny104.menu.90_console_baud.500000bps.build.console_baud=-DCONSOLE_BAUD=500000
